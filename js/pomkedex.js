@@ -51,6 +51,9 @@ function filtrar() {
 }
 
 function mensajeVacio() {
+  if (estado.todos.length === 0) {
+    return 'Todavía no hay Pomkémon en la Pomkédex.';
+  }
   if (estado.soloFavoritos && obtenerFavoritos().size === 0) {
     return 'Aún no tienes favoritos. Toca el corazón de cualquier Pomkémon para guardarlo aquí.';
   }

@@ -219,7 +219,7 @@
 
 .plataforma--kofi        { background: #13c3ff; color: #1a1a1a; }
 .plataforma--kofi:hover  { color: #1a1a1a; }
-.plataforma--mercadopago { background: #009ee3; }
+.plataforma--mercadopago { background: #007cb3; }
 .plataforma--paypal      { background: #003087; }
 
 .boton-generar {

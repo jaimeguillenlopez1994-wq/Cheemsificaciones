@@ -24,7 +24,7 @@ export function crearBadgeTipo(id, tamano = 'normal') {
     : '';
 
   return `
-    <span class="badge-tipo badge-tipo--${tamano}" style="--color-tipo: ${tipo.color}">
+    <span class="badge-tipo badge-tipo--${tamano}" style="--color-tipo: ${tipo.color}${tipo.texto ? `; --texto-tipo: ${tipo.texto}` : ''}">
       ${imagen}<span class="badge-tipo__texto">${nombre}</span>
     </span>`;
 }

@@ -32,26 +32,28 @@ export const ARCHIVOS_DATOS = {
   recursos: 'recursos.json',
 };
 
-/* ---------- Catálogo de los 18 tipos ---------- */
+/* ---------- Catálogo de los 18 tipos ----------
+   Colores con contraste AA (≥ 4.5:1) frente al texto del badge.
+   "texto" es opcional: por defecto el nombre va en blanco. */
 export const TIPOS = {
-  amcero:     { nombre: 'Amcero',     color: '#8a9aa8' },
-  amgua:      { nombre: 'Amgua',      color: '#3d7fd6' },
-  bicho:      { nombre: 'Bicho',      color: '#8aa11d' },
+  amcero:     { nombre: 'Amcero',     color: '#647687' },
+  amgua:      { nombre: 'Amgua',      color: '#2c74d2' },
+  bicho:      { nombre: 'Bicho',      color: '#6b7c16' },
   dramgon:    { nombre: 'Dramgon',    color: '#5a50c9' },
-  elemctrico: { nombre: 'Elemctrico', color: '#e0b000' },
+  elemctrico: { nombre: 'Elemctrico', color: '#e0b000', texto: '#1f1a00' },
   famtasma:   { nombre: 'Famtasma',   color: '#6a4f92' },
-  fuemgo:     { nombre: 'Fuemgo',     color: '#e0642b' },
-  hamda:      { nombre: 'Hamda',      color: '#d677c4' },
-  hiemlo:     { nombre: 'Hiemlo',     color: '#3fb3c9' },
+  fuemgo:     { nombre: 'Fuemgo',     color: '#c3511d' },
+  hamda:      { nombre: 'Hamda',      color: '#c33ba9' },
+  hiemlo:     { nombre: 'Hiemlo',     color: '#287e8e' },
   lumcha:     { nombre: 'Lumcha',     color: '#c0402f' },
-  normalm:    { nombre: 'Normalm',    color: '#9a9a78' },
-  plamta:     { nombre: 'Plamta',     color: '#4f9a3a' },
-  psimquico:  { nombre: 'Psimquico',  color: '#e0567a' },
-  romca:      { nombre: 'Romca',      color: '#a8903a' },
+  normalm:    { nombre: 'Normalm',    color: '#757558' },
+  plamta:     { nombre: 'Plamta',     color: '#438231' },
+  psimquico:  { nombre: 'Psimquico',  color: '#d9315d' },
+  romca:      { nombre: 'Romca',      color: '#86732e' },
   simniestro: { nombre: 'Simniestro', color: '#4f4040' },
-  tiemrra:    { nombre: 'Tiemrra',    color: '#b98a3e' },
+  tiemrra:    { nombre: 'Tiemrra',    color: '#936e31' },
   vemneno:    { nombre: 'Vemneno',    color: '#9150a8' },
-  vomlador:   { nombre: 'Vomlador',   color: '#7f9ce0' },
+  vomlador:   { nombre: 'Vomlador',   color: '#4670d2' },
 };
 
 // Cambiar a true cuando existan los 18 archivos assets/img/tipos/<id>.svg.
