@@ -10,6 +10,7 @@
  */
 import { SITIO, NAV, REDES, TEXTOS } from './config.js';
 import { estaSilenciado, alternarSilencio } from './audio.js';
+import { activarImagenesRespaldo } from './utils.js';
 
 const ICONOS = {
   sonido: `
@@ -154,6 +155,8 @@ function iniciarLayout() {
   const pagina = document.body.dataset.pagina ?? '';
   const encabezado = document.getElementById('encabezado');
   const pie = document.getElementById('pie');
+
+  activarImagenesRespaldo();
 
   if (encabezado) {
     encabezado.classList.add('encabezado');
