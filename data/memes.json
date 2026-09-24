@@ -1,0 +1,20 @@
+[
+  {
+    "id": "meme-001",
+    "titulo": "Pomkémon en la vida real",
+    "imagenes": ["meme001_1.webp", "meme001_2.webp"],
+    "pomkemons": ["0001", "0004"]
+  },
+  {
+    "id": "meme-002",
+    "titulo": "Cuando te dicen que ya no hay croquetas",
+    "imagenes": ["meme002_1.webp"],
+    "pomkemons": ["0054"]
+  },
+  {
+    "id": "meme-003",
+    "titulo": "Gemngar a las 3 a.m.",
+    "imagenes": ["meme003_1.webp", "meme003_2.webp", "meme003_3.webp"],
+    "pomkemons": ["0092", "0094"]
+  }
+]

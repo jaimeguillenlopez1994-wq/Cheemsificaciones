@@ -1,0 +1,182 @@
+[
+  {
+    "numero": "0001",
+    "nombre": "Bulmbasaur",
+    "descripcion": "A este Pomkémon le gustan las bayas y tomar el sol.",
+    "imagen": "0001.webp",
+    "tipos": ["plamta", "vemneno"],
+    "habilidad": "espesura",
+    "tamano": "S",
+    "evoluciones": ["0001", "0002", "0003"]
+  },
+  {
+    "numero": "0002",
+    "nombre": "Ivymsaur",
+    "descripcion": "Descripción provisional. El capullo de su lomo crece cada vez que se echa una siesta al sol.",
+    "imagen": "0002.webp",
+    "tipos": ["plamta", "vemneno"],
+    "habilidad": "espesura",
+    "tamano": "L",
+    "evoluciones": ["0001", "0002", "0003"]
+  },
+  {
+    "numero": "0003",
+    "nombre": "Venumsaur",
+    "descripcion": "Descripción provisional. Su flor desprende un aroma que calma la amsiedad de quien lo huele.",
+    "imagen": "0003.webp",
+    "tipos": ["plamta", "vemneno"],
+    "habilidad": "espesura",
+    "tamano": "X",
+    "evoluciones": ["0001", "0002", "0003"]
+  },
+  {
+    "numero": "0004",
+    "nombre": "Chamrmander",
+    "descripcion": "Descripción provisional. La llama de su cola indica su estado de ámnimo.",
+    "imagen": "0004.webp",
+    "tipos": ["fuemgo"],
+    "habilidad": "mar-llamas",
+    "tamano": "S",
+    "evoluciones": ["0004", "0005", "0006"]
+  },
+  {
+    "numero": "0005",
+    "nombre": "Chamrmeleon",
+    "descripcion": "Descripción provisional. Se vuelve algo gruñón cuando no le dan su premio.",
+    "imagen": "0005.webp",
+    "tipos": ["fuemgo"],
+    "habilidad": "mar-llamas",
+    "tamano": "L",
+    "evoluciones": ["0004", "0005", "0006"]
+  },
+  {
+    "numero": "0007",
+    "nombre": "Squimrtle",
+    "descripcion": "Descripción provisional. Se esconde en su caparazón cuando escucha la aspiradora.",
+    "imagen": "0007.webp",
+    "tipos": ["amgua"],
+    "habilidad": "torrente",
+    "tamano": "S",
+    "evoluciones": ["0007", "0008", "0009"]
+  },
+  {
+    "numero": "0008",
+    "nombre": "Wamrtortle",
+    "descripcion": "Descripción provisional. Su cola esponjosa es símbolo de longevidad y de muchos mimos.",
+    "imagen": "0008.webp",
+    "tipos": ["amgua"],
+    "habilidad": "torrente",
+    "tamano": "L",
+    "evoluciones": ["0007", "0008", "0009"]
+  },
+  {
+    "numero": "0009",
+    "nombre": "Blamstoise",
+    "descripcion": "Descripción provisional. Dispara chorros de agua a quien intenta quitarle su pelota.",
+    "imagen": "0009.webp",
+    "tipos": ["amgua"],
+    "habilidad": "torrente",
+    "tamano": "X",
+    "evoluciones": ["0007", "0008", "0009"]
+  },
+  {
+    "numero": "0010",
+    "nombre": "Camterpie",
+    "descripcion": "Descripción provisional. Come hojas sin parar y luego duerme todo el día.",
+    "imagen": "0010.webp",
+    "tipos": ["bicho"],
+    "habilidad": "polvo-escudo",
+    "tamano": "S",
+    "evoluciones": []
+  },
+  {
+    "numero": "0025",
+    "nombre": "Pimkachu",
+    "descripcion": "Descripción provisional. Almacena electricidad en sus mejillas y la suelta al ver a un gato.",
+    "imagen": "0025.webp",
+    "tipos": ["elemctrico"],
+    "habilidad": "electricidad-estatica",
+    "tamano": "S",
+    "evoluciones": []
+  },
+  {
+    "numero": "0039",
+    "nombre": "Jimgglypuff",
+    "descripcion": "Descripción provisional. Su canción es tan relajante que todos se duermen antes del final.",
+    "imagen": "0039.webp",
+    "tipos": ["normalm", "hamda"],
+    "habilidad": "gran-encanto",
+    "tamano": "S",
+    "evoluciones": []
+  },
+  {
+    "numero": "0052",
+    "nombre": "Meowmth",
+    "descripcion": "Descripción provisional. Colecciona monedas brillantes, pero siempre las pierde bajo el sofá.",
+    "imagen": "0052.webp",
+    "tipos": ["normalm"],
+    "habilidad": "recogida",
+    "tamano": "L",
+    "evoluciones": []
+  },
+  {
+    "numero": "0054",
+    "nombre": "Psymduck",
+    "descripcion": "Descripción provisional. Siempre tiene dolor de cabeza, y aun así mueve la colita.",
+    "imagen": "0054.webp",
+    "tipos": ["amgua"],
+    "habilidad": "humedad",
+    "tamano": "L",
+    "evoluciones": []
+  },
+  {
+    "numero": "0092",
+    "nombre": "Gamstly",
+    "descripcion": "Descripción provisional. Está hecho de gas y huele un poquito a croquetas.",
+    "imagen": "0092.webp",
+    "tipos": ["famtasma", "vemneno"],
+    "habilidad": "levitacion",
+    "tamano": "S",
+    "evoluciones": ["0092", "0093", "0094"]
+  },
+  {
+    "numero": "0093",
+    "nombre": "Haumter",
+    "descripcion": "Descripción provisional. Le encanta asustar a los carteros desde las sombras.",
+    "imagen": "0093.webp",
+    "tipos": ["famtasma", "vemneno"],
+    "habilidad": "levitacion",
+    "tamano": "L",
+    "evoluciones": ["0092", "0093", "0094"]
+  },
+  {
+    "numero": "0094",
+    "nombre": "Gemngar",
+    "descripcion": "Descripción provisional. Su sonrisa aparece en la oscuridad cuando alguien abre el refrigerador.",
+    "imagen": "0094.webp",
+    "tipos": ["famtasma", "vemneno"],
+    "habilidad": "cuerpo-maldito",
+    "tamano": "X",
+    "evoluciones": ["0092", "0093", "0094"]
+  },
+  {
+    "numero": "0133",
+    "nombre": "Eemvee",
+    "descripcion": "Descripción provisional. Su código genético es tan inestable como sus ganas de pasear.",
+    "imagen": "0133.webp",
+    "tipos": ["normalm"],
+    "habilidad": "adaptable",
+    "tamano": "S",
+    "evoluciones": []
+  },
+  {
+    "numero": "0152",
+    "nombre": "Chimkorita",
+    "descripcion": "Descripción provisional. Mueve la hoja de su cabeza para saludar a sus amigos.",
+    "imagen": "0152.webp",
+    "tipos": ["plamta"],
+    "habilidad": "espesura",
+    "tamano": "L",
+    "evoluciones": []
+  }
+]

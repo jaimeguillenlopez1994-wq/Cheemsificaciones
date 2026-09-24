@@ -1,0 +1,56 @@
+[
+  {
+    "id": "rec-001",
+    "titulo": "Gastly para colorear",
+    "categoria": "Plantillas",
+    "resumen": "Descarga la plantilla en alta resolución para colorear a Gastly.",
+    "imagenPortada": "recursos/gastly-portada.webp",
+    "pomkemons": ["0092"],
+    "archivos": [
+      {
+        "nombre": "Gastly - Hoja A4 para colorear",
+        "url": "recursos/gastly-colorear-a4.png",
+        "formato": "PNG",
+        "tamano": "2.4 MB"
+      }
+    ]
+  },
+  {
+    "id": "rec-002",
+    "titulo": "Fondos de pantalla iniciales",
+    "categoria": "Fondos",
+    "resumen": "Recurso provisional. Fondos para celular y escritorio con los iniciales de Kanto.",
+    "imagenPortada": "recursos/fondos-iniciales-portada.webp",
+    "pomkemons": ["0001", "0004", "0007"],
+    "archivos": [
+      {
+        "nombre": "Fondo para celular (1080×1920)",
+        "url": "recursos/fondo-iniciales-movil.png",
+        "formato": "PNG",
+        "tamano": "1.8 MB"
+      },
+      {
+        "nombre": "Fondo para escritorio (1920×1080)",
+        "url": "recursos/fondo-iniciales-escritorio.png",
+        "formato": "PNG",
+        "tamano": "2.1 MB"
+      }
+    ]
+  },
+  {
+    "id": "rec-003",
+    "titulo": "Stickers de Pimkachu",
+    "categoria": "Stickers",
+    "resumen": "Recurso provisional. Hoja de stickers lista para imprimir.",
+    "imagenPortada": "recursos/stickers-pimkachu-portada.webp",
+    "pomkemons": ["0025"],
+    "archivos": [
+      {
+        "nombre": "Hoja de stickers - Carta",
+        "url": "recursos/stickers-pimkachu.pdf",
+        "formato": "PDF",
+        "tamano": "3.2 MB"
+      }
+    ]
+  }
+]

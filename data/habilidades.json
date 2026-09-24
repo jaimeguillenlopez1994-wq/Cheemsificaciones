@@ -1,0 +1,57 @@
+[
+  {
+    "id": "espesura",
+    "nombre": "Espesura",
+    "descripcion": "Aumenta el poder de los movimientos de tipo Planta cuando los PS del Pomkémon están bajos."
+  },
+  {
+    "id": "mar-llamas",
+    "nombre": "Mar Llamas",
+    "descripcion": "Aumenta el poder de los movimientos de tipo Fuego cuando los PS del Pomkémon están bajos."
+  },
+  {
+    "id": "torrente",
+    "nombre": "Torrente",
+    "descripcion": "Aumenta el poder de los movimientos de tipo Agua cuando los PS del Pomkémon están bajos."
+  },
+  {
+    "id": "polvo-escudo",
+    "nombre": "Polvo Escudo",
+    "descripcion": "Descripción provisional. Unas escamas de polvo lo protegen de los efectos secundarios."
+  },
+  {
+    "id": "electricidad-estatica",
+    "nombre": "Electricidad Estática",
+    "descripcion": "Descripción provisional. Puede paralizar al contacto a quien intente quitarle su premio."
+  },
+  {
+    "id": "gran-encanto",
+    "nombre": "Gran Encanto",
+    "descripcion": "Descripción provisional. Su ternura hace que nadie pueda enojarse con él."
+  },
+  {
+    "id": "recogida",
+    "nombre": "Recogida",
+    "descripcion": "Descripción provisional. A veces encuentra objetos (y calcetines) tras un paseo."
+  },
+  {
+    "id": "humedad",
+    "nombre": "Humedad",
+    "descripcion": "Descripción provisional. Crea un ambiente húmedo que evita que alguien explote de amsiedad."
+  },
+  {
+    "id": "levitacion",
+    "nombre": "Levitación",
+    "descripcion": "Descripción provisional. Flota sobre el suelo, así que nunca pisa el agua del bebedero."
+  },
+  {
+    "id": "cuerpo-maldito",
+    "nombre": "Cuerpo Maldito",
+    "descripcion": "Descripción provisional. Puede anular el último movimiento que lo golpeó."
+  },
+  {
+    "id": "adaptable",
+    "nombre": "Adaptable",
+    "descripcion": "Descripción provisional. Potencia los movimientos de su mismo tipo."
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "post-001",
+    "titulo": "Llegaron los fanarts tipo Planta",
+    "fecha": "2026-09-10",
+    "resumen": "Añadimos nuevas ilustraciones a la sección de Pomkédex con sus respectivos tipos y habilidades.",
+    "imagenPortada": "novedades/portada-planta.webp",
+    "pomkemons": ["0001"],
+    "contenido": [
+      { "tipo": "parrafo", "texto": "Bienvenidos a la actualización de tipo planta." },
+      { "tipo": "imagen", "url": "novedades/imagen1.webp", "pie": "Detalle de Bulmbasaur" }
+    ]
+  },
+  {
+    "id": "post-002",
+    "titulo": "Bienvenidos a Cheemsificaciones Pomkémon",
+    "fecha": "2026-08-01",
+    "resumen": "Publicación provisional. Arranca el proyecto de fanarts Cheems más amsioso de internet.",
+    "imagenPortada": "novedades/portada-bienvenida.webp",
+    "pomkemons": [],
+    "contenido": [
+      { "tipo": "parrafo", "texto": "Texto provisional de bienvenida al sitio." },
+      { "tipo": "parrafo", "texto": "Aquí iremos publicando cada nuevo fanart, meme y recurso." }
+    ]
+  },
+  {
+    "id": "post-003",
+    "titulo": "Los iniciales de fuego y agua",
+    "fecha": "2026-08-20",
+    "resumen": "Publicación provisional. Chamrmander y Squimrtle se unen a la Pomkédex.",
+    "imagenPortada": "novedades/portada-iniciales.webp",
+    "pomkemons": ["0004", "0005", "0007", "0008", "0009"],
+    "contenido": [
+      { "tipo": "parrafo", "texto": "Texto provisional sobre los nuevos iniciales." },
+      { "tipo": "imagen", "url": "novedades/iniciales-boceto.webp", "pie": "Bocetos de Chamrmander y Squimrtle" },
+      { "tipo": "parrafo", "texto": "Pronto llegará la última evolución de Chamrmander." }
+    ]
+  },
+  {
+    "id": "post-004",
+    "titulo": "Especial Famtasma",
+    "fecha": "2026-09-18",
+    "resumen": "Publicación provisional. La línea evolutiva de Gamstly ya está completa.",
+    "imagenPortada": "novedades/portada-famtasma.webp",
+    "pomkemons": ["0092", "0093", "0094"],
+    "contenido": [
+      { "tipo": "parrafo", "texto": "Texto provisional del especial de tipo fantasma." },
+      { "tipo": "imagen", "url": "novedades/famtasma-linea.webp", "pie": "Gamstly, Haumter y Gemngar" }
+    ]
+  },
+  {
+    "id": "post-005",
+    "titulo": "Nueva sección de recursos",
+    "fecha": "2026-09-05",
+    "resumen": "Publicación provisional. Ya puedes descargar plantillas para colorear.",
+    "imagenPortada": "novedades/portada-recursos.webp",
+    "pomkemons": ["0092"],
+    "contenido": [
+      { "tipo": "parrafo", "texto": "Texto provisional sobre la sección de recursos." }
+    ]
+  },
+  {
+    "id": "post-006",
+    "titulo": "Pimkachu se une a la Pomkédex",
+    "fecha": "2026-09-22",
+    "resumen": "Publicación provisional. El Pomkémon eléctrico más famoso ya tiene su fanart.",
+    "imagenPortada": "novedades/portada-pimkachu.webp",
+    "pomkemons": ["0025"],
+    "contenido": [
+      { "tipo": "parrafo", "texto": "Texto provisional sobre Pimkachu." },
+      { "tipo": "imagen", "url": "novedades/pimkachu-detalle.webp", "pie": "Detalle de Pimkachu" }
+    ]
+  }
+]

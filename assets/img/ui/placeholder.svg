@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" role="img" aria-label="Imagen pendiente">
+  <g fill="#d3ccc4" stroke="#8a827b" stroke-width="10">
+    <circle cx="540" cy="400" r="130"/>
+    <ellipse cx="540" cy="700" rx="230" ry="190"/>
+  </g>
+  <text x="540" y="660" text-anchor="middle" font-family="Arial, sans-serif" font-size="150" font-weight="bold" fill="#8a827b">?</text>
+</svg>
