@@ -54,6 +54,10 @@ export const TIPOS = {
   vomlador:   { nombre: 'Vomlador',   color: '#7f9ce0' },
 };
 
+// Cambiar a true cuando existan los 18 archivos assets/img/tipos/<id>.svg.
+// Mientras sea false se muestran píldoras de color con el nombre del tipo.
+export const USAR_SVG_TIPOS = false;
+
 /* ---------- Escala visual según "tamano" ---------- */
 export const ESCALAS = {
   S: 0.7,

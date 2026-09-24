@@ -1,0 +1,271 @@
+/* ==========================================================================
+   Cheemsificaciones Pomkémon — components.css
+   Piezas reutilizables: grilla, tarjeta de Pomkémon, marco de imagen,
+   badges de tipo, botón de favorito y botón ovalado rojo.
+   ========================================================================== */
+
+/* ---------- Grilla de 3 columnas (2 en tablet, 1 en móvil) ---------- */
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 2.25rem);
+}
+
+.grilla.sin-resultados {
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .grilla { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .grilla { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ---------- Tarjeta de Pomkémon ---------- */
+.tarjeta-pomkemon {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem 1.5rem;
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  transition: transform var(--transicion), box-shadow var(--transicion), border-color var(--transicion);
+}
+
+.tarjeta-pomkemon:hover,
+.tarjeta-pomkemon:has(:focus-visible) {
+  transform: translateY(-4px);
+  border-color: #d8b9b3;
+  box-shadow: 0 12px 24px rgba(107, 13, 20, 0.14);
+}
+
+.tarjeta-pomkemon__titulo {
+  font-size: 1.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tarjeta-pomkemon__enlace {
+  color: var(--texto);
+}
+
+.tarjeta-pomkemon__enlace:hover {
+  text-decoration: none;
+}
+
+/* Enlace "estirado": toda la tarjeta es clicable */
+.tarjeta-pomkemon__enlace::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.tarjeta-pomkemon__enlace:focus-visible {
+  outline: none;
+}
+
+.tarjeta-pomkemon__enlace:focus-visible::after {
+  outline: 3px solid var(--amarillo);
+  outline-offset: 2px;
+}
+
+.tarjeta-pomkemon__imagen {
+  position: relative;
+}
+
+.tarjeta-pomkemon .lista-badges {
+  margin-top: auto;
+}
+
+/* ---------- Marco beige del fanart (escala según "tamano") ---------- */
+.marco-imagen {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--beige);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+.marco-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: scale(var(--escala, 1));
+  transition: transform 0.3s ease;
+}
+
+.tarjeta-pomkemon:hover .marco-imagen img {
+  transform: scale(calc(var(--escala, 1) * 1.05));
+}
+
+/* ---------- Badges de tipo ---------- */
+.lista-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.badge-tipo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 115px;
+  padding: 0.3rem 1rem;
+  border-radius: 999px;
+  background: var(--color-tipo, #888);
+  color: var(--blanco);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.badge-tipo--grande {
+  min-width: 140px;
+  padding: 0.45rem 1.4rem;
+  font-size: 1rem;
+}
+
+.badge-tipo__img {
+  display: none;
+}
+
+/* Cuando el SVG real carga, sustituye a la píldora */
+.badge-tipo--svg {
+  min-width: 0;
+  padding: 0;
+  background: none;
+}
+
+.badge-tipo--svg .badge-tipo__img {
+  display: block;
+  height: 30px;
+  width: auto;
+}
+
+.badge-tipo--grande.badge-tipo--svg .badge-tipo__img {
+  height: 38px;
+}
+
+.badge-tipo--svg .badge-tipo__texto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+/* ---------- Botón de favorito (corazón) ---------- */
+.boton-favorito {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 2; /* por encima del enlace estirado */
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  border: 2px solid var(--borde);
+  color: #b9b0a7;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: color var(--transicion), border-color var(--transicion), transform var(--transicion);
+}
+
+.boton-favorito svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.boton-favorito:hover {
+  color: var(--rojo);
+  border-color: var(--rojo);
+  transform: scale(1.08);
+}
+
+.boton-favorito[aria-pressed="true"] {
+  color: var(--rojo);
+  border-color: var(--rojo);
+}
+
+.boton-favorito[aria-pressed="true"] svg {
+  fill: currentColor;
+}
+
+.boton-favorito.animar {
+  animation: latido 0.45s ease;
+}
+
+@keyframes latido {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.35); }
+  60%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+/* ---------- Botón ovalado rojo ("Ver más ...") ---------- */
+.boton-ovalado {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 52px;
+  padding: 0.75rem 2.5rem;
+  border-radius: 999px;
+  background: var(--rojo);
+  color: var(--blanco);
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 10px rgba(160, 22, 31, 0.3);
+  transition: background var(--transicion), transform var(--transicion), box-shadow var(--transicion);
+}
+
+.boton-ovalado:hover {
+  background: var(--rojo-hover);
+  color: var(--blanco);
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(160, 22, 31, 0.35);
+}
+
+.boton-ovalado:active {
+  transform: translateY(0);
+}
+
+.boton-ovalado[hidden] {
+  display: none;
+}
+
+.boton-ovalado--secundario {
+  background: var(--blanco);
+  color: var(--rojo);
+  border: 2px solid var(--rojo);
+  box-shadow: none;
+}
+
+.boton-ovalado--secundario:hover {
+  background: var(--rojo);
+}
+
+.ver-mas {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
