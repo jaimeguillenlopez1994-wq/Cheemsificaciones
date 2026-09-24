@@ -1,0 +1,146 @@
+/* ==========================================================================
+   Pomkédex — buscador, contador y filtro de favoritos
+   ========================================================================== */
+
+.pomkedex-controles {
+  max-width: 900px;
+  margin: 0 auto 2.25rem;
+}
+
+/* ---------- Buscador ---------- */
+.buscador {
+  display: flex;
+  height: 64px;
+  border: 2px solid var(--rojo);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--blanco);
+  box-shadow: 0 4px 12px rgba(160, 22, 31, 0.1);
+  transition: box-shadow var(--transicion);
+}
+
+.buscador:focus-within {
+  box-shadow: 0 0 0 4px rgba(242, 181, 58, 0.55);
+}
+
+.buscador__campo {
+  flex: 1;
+  min-width: 0;
+  padding: 0 1.5rem;
+  border: none;
+  background: transparent;
+  font-size: 1.15rem;
+}
+
+.buscador__campo:focus {
+  outline: none;
+}
+
+.buscador__campo::placeholder {
+  color: #8a8a8a;
+}
+
+.buscador__boton {
+  display: grid;
+  place-items: center;
+  width: 80px;
+  flex-shrink: 0;
+  background: var(--rojo);
+  color: var(--blanco);
+  transition: background var(--transicion);
+}
+
+.buscador__boton:hover {
+  background: var(--rojo-hover);
+}
+
+.buscador__boton svg {
+  width: 30px;
+  height: 30px;
+}
+
+/* ---------- Contador + filtro ---------- */
+.pomkedex-barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  margin-top: 1rem;
+  padding-inline: 0.25rem;
+}
+
+.pomkedex-contador {
+  color: var(--texto-suave);
+  font-size: 1.05rem;
+}
+
+.pomkedex-contador strong {
+  color: var(--texto);
+}
+
+.filtro-favoritos {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.1rem;
+  border: 2px solid var(--rojo);
+  border-radius: 999px;
+  background: var(--blanco);
+  color: var(--rojo);
+  font-weight: 700;
+  transition: background var(--transicion), color var(--transicion);
+}
+
+.filtro-favoritos svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+}
+
+.filtro-favoritos:hover {
+  background: #fbeaea;
+}
+
+.filtro-favoritos[aria-pressed="true"] {
+  background: var(--rojo);
+  color: var(--blanco);
+}
+
+.filtro-favoritos[aria-pressed="true"] svg {
+  fill: currentColor;
+}
+
+.filtro-favoritos__cantidad {
+  display: inline-grid;
+  place-items: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--rojo);
+  color: var(--blanco);
+  font-size: 0.85rem;
+}
+
+.filtro-favoritos[aria-pressed="true"] .filtro-favoritos__cantidad {
+  background: var(--blanco);
+  color: var(--rojo);
+}
+
+@media (max-width: 560px) {
+  .buscador {
+    height: 54px;
+  }
+
+  .buscador__campo {
+    padding: 0 1.1rem;
+    font-size: 1rem;
+  }
+
+  .buscador__boton {
+    width: 62px;
+  }
+}

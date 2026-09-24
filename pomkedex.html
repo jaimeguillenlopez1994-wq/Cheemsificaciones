@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomkédex | Cheemsificaciones Pomkémon</title>
+  <meta name="description" content="Pomkédex: todos los fanarts de Cheemsificaciones Pomkémon con sus tipos y habilidades.">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages/pomkedex.css">
+</head>
+<body data-pagina="pomkedex">
+  <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+
+  <div class="sitio">
+    <header id="encabezado"></header>
+
+    <main id="contenido" class="contenido" tabindex="-1">
+      <h1 class="visualmente-oculto">Pomkédex</h1>
+
+      <div class="pomkedex-controles">
+        <form class="buscador" role="search" id="buscador">
+          <label class="visualmente-oculto" for="busqueda">Buscar Pomkémon por número o nombre</label>
+          <input class="buscador__campo" type="search" id="busqueda" name="q"
+                 placeholder="Buscar por número o nombre..." autocomplete="off" spellcheck="false">
+          <button class="buscador__boton" type="submit" aria-label="Buscar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true">
+              <circle cx="10.5" cy="10.5" r="6.5"/>
+              <path d="m15.5 15.5 5 5"/>
+            </svg>
+          </button>
+        </form>
+
+        <div class="pomkedex-barra">
+          <p class="pomkedex-contador" id="contador" aria-live="polite">Cargando Pomkémon...</p>
+          <button class="filtro-favoritos" type="button" id="filtro-favoritos" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 21s-7.5-4.6-9.6-9.4C1 8.3 3 4.5 6.7 4.5c2.1 0 3.6 1.2 4.3 2.4.2.4.8.4 1 0 .7-1.2 2.2-2.4 4.3-2.4 3.7 0 5.7 3.8 4.3 7.1C19.5 16.4 12 21 12 21z"/>
+            </svg>
+            Mis Favoritos <span class="filtro-favoritos__cantidad" id="cantidad-favoritos">0</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="grilla" id="grilla">
+        <p class="estado estado--cargando">Cargando Pomkémon...</p>
+      </div>
+
+      <div class="ver-mas">
+        <button class="boton-ovalado" type="button" id="ver-mas" hidden>Ver más Pomkémon</button>
+      </div>
+    </main>
+
+    <footer id="pie"></footer>
+  </div>
+
+  <script type="module" src="js/core/layout.js"></script>
+  <script type="module" src="js/pomkedex.js"></script>
+</body>
+</html>
