@@ -91,6 +91,7 @@ export const SONIDOS = {
 export const STORAGE = {
   favoritos: 'cheems.favoritos',
   silencio: 'cheems.silencio',
+  ultimaBusqueda: 'cheems.ultimaBusqueda', // sessionStorage
 };
 
 /* ---------- Navegación ---------- */

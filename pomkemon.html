@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomkémon | Cheemsificaciones Pomkémon</title>
+  <meta name="description" content="Ficha de Pomkémon: descripción, habilidad, línea evolutiva e imágenes donde aparece.">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages/pomkemon.css">
+</head>
+<body data-pagina="pomkemon">
+  <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+
+  <div class="sitio">
+    <header id="encabezado"></header>
+
+    <main id="contenido" class="contenido" tabindex="-1">
+      <nav class="ficha-navegacion" aria-label="Navegación de la Pomkédex">
+        <a class="enlace-volver" href="pomkedex.html" id="volver">← Volver a la Pomkédex</a>
+        <div class="ficha-secuencia" id="secuencia"></div>
+      </nav>
+
+      <div id="ficha">
+        <p class="estado estado--cargando">Cargando Pomkémon...</p>
+      </div>
+    </main>
+
+    <footer id="pie"></footer>
+  </div>
+
+  <script type="module" src="js/core/layout.js"></script>
+  <script type="module" src="js/pomkemon-detalle.js"></script>
+</body>
+</html>

@@ -269,3 +269,108 @@
   justify-content: center;
   margin-top: 2.5rem;
 }
+
+/* ---------- Carrusel ---------- */
+.carrusel {
+  --slide-ancho: 100%;
+  --carrusel-hueco: 1rem;
+  position: relative;
+}
+
+.carrusel__marco {
+  position: relative;
+}
+
+.carrusel__pista {
+  position: relative; /* referencia para offsetLeft de las diapositivas */
+  display: flex;
+  gap: var(--carrusel-hueco);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  border-radius: var(--radio);
+}
+
+.carrusel__pista::-webkit-scrollbar {
+  display: none;
+}
+
+.carrusel__slide {
+  flex: 0 0 var(--slide-ancho);
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.carrusel__flecha {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--rojo);
+  color: var(--blanco);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  transform: translateY(-50%);
+  transition: background var(--transicion), opacity var(--transicion), transform var(--transicion);
+}
+
+.carrusel__flecha svg {
+  width: 22px;
+  height: 22px;
+}
+
+.carrusel__flecha:hover {
+  background: var(--rojo-hover);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.carrusel__flecha:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.carrusel__flecha--prev { left: -18px; }
+.carrusel__flecha--next { right: -18px; }
+
+.carrusel--estatico .carrusel__flecha,
+.carrusel--estatico .carrusel__puntos {
+  display: none;
+}
+
+.carrusel__puntos {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.carrusel__punto {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--borde);
+  transition: background var(--transicion), transform var(--transicion);
+}
+
+.carrusel__punto:hover {
+  background: #cfa9a9;
+}
+
+.carrusel__punto[aria-current="true"] {
+  background: var(--rojo);
+  transform: scale(1.25);
+}
+
+@media (max-width: 560px) {
+  .carrusel__flecha {
+    width: 40px;
+    height: 40px;
+  }
+
+  .carrusel__flecha--prev { left: -8px; }
+  .carrusel__flecha--next { right: -8px; }
+}

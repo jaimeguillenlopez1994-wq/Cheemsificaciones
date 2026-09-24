@@ -1,0 +1,330 @@
+/* ==========================================================================
+   Ficha individual — navegación, detalle, línea evolutiva y apariciones
+   ========================================================================== */
+
+/* ---------- Navegación superior ---------- */
+.ficha-navegacion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.enlace-volver {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--rojo);
+}
+
+.ficha-secuencia {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.boton-secuencia {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  max-width: 260px;
+  padding: 0.45rem 1.1rem;
+  border: 2px solid var(--rojo);
+  border-radius: 999px;
+  background: var(--blanco);
+  color: var(--rojo);
+  font-weight: 700;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  transition: background var(--transicion), color var(--transicion);
+}
+
+.boton-secuencia:hover {
+  background: var(--rojo);
+  color: var(--blanco);
+  text-decoration: none;
+}
+
+.boton-secuencia__texto {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.boton-secuencia--vacio {
+  display: none;
+}
+
+/* ---------- Tarjeta principal ---------- */
+.ficha {
+  padding: clamp(1.25rem, 4vw, 3rem);
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-grande);
+  box-shadow: var(--sombra);
+}
+
+.ficha--vacia {
+  text-align: center;
+}
+
+.ficha__encabezado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  margin-bottom: clamp(1.5rem, 4vw, 2.75rem);
+  text-align: center;
+}
+
+.ficha__titulo {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+}
+
+.ficha__cuerpo {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(1.5rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.ficha__imagen {
+  position: relative;
+}
+
+.ficha__imagen .marco-imagen {
+  border-radius: var(--radio-grande);
+}
+
+.ficha__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 1rem;
+}
+
+.ficha__subtitulo {
+  margin-bottom: 0.6rem;
+  color: var(--granate);
+  font-size: 1.75rem;
+}
+
+.ficha__texto {
+  font-size: 1.1rem;
+}
+
+.ficha__texto--suave {
+  color: var(--texto-suave);
+}
+
+/* Tarjeta técnica de la habilidad */
+.tarjeta-habilidad {
+  padding: 1.1rem 1.3rem;
+  background: var(--beige);
+  border-left: 5px solid var(--rojo);
+  border-radius: 0 var(--radio) var(--radio) 0;
+}
+
+.tarjeta-habilidad__nombre {
+  margin-bottom: 0.4rem;
+  font-size: 1.2rem;
+}
+
+.tarjeta-habilidad__descripcion {
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+/* ---------- Bloques inferiores ---------- */
+.bloque-ficha {
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+}
+
+.bloque-ficha__titulo {
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 3px solid var(--rojo);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+}
+
+/* ---------- Línea evolutiva ---------- */
+.linea-evolutiva {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.evolucion__tarjeta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 170px;
+  padding: 0.75rem;
+  border: 2px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--blanco);
+  color: var(--texto);
+  text-align: center;
+  transition: transform var(--transicion), border-color var(--transicion), box-shadow var(--transicion);
+}
+
+a.evolucion__tarjeta:hover {
+  text-decoration: none;
+  transform: translateY(-4px);
+  border-color: var(--rojo);
+  box-shadow: var(--sombra);
+}
+
+.evolucion--actual .evolucion__tarjeta {
+  border-color: var(--amarillo);
+  background: var(--beige-logo);
+}
+
+.evolucion__imagen {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.evolucion__numero {
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+.evolucion__nombre {
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.evolucion__flecha {
+  color: var(--rojo);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* ---------- Imágenes donde aparece ---------- */
+.carrusel--apariciones {
+  --slide-ancho: calc((100% - 2 * var(--carrusel-hueco)) / 3);
+  padding-inline: 0.25rem;
+}
+
+.aparicion {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--blanco);
+  color: var(--texto);
+  transition: border-color var(--transicion), box-shadow var(--transicion);
+}
+
+.aparicion:hover {
+  text-decoration: none;
+  border-color: var(--rojo);
+  box-shadow: var(--sombra);
+}
+
+.aparicion__imagen {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  background: var(--beige);
+}
+
+.aparicion__imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aparicion__imagen img.es-respaldo {
+  object-fit: contain;
+  padding: 1rem;
+}
+
+.aparicion__tipo {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  padding: 0.15rem 0.7rem;
+  border-radius: 999px;
+  background: var(--rojo);
+  color: var(--blanco);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.aparicion__tipo--novedad { background: #2f6fb0; }
+.aparicion__tipo--recurso { background: #4f9a3a; }
+
+.aparicion__titulo {
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.estado--sin-apariciones {
+  padding: 2.5rem 1rem;
+  background: var(--beige);
+  border: 2px dashed var(--borde);
+  border-radius: var(--radio);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .carrusel--apariciones {
+    --slide-ancho: calc((100% - var(--carrusel-hueco)) / 2);
+  }
+}
+
+@media (max-width: 760px) {
+  .ficha__cuerpo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ficha__imagen {
+    max-width: 420px;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .ficha__info {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .ficha-navegacion {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ficha-secuencia {
+    justify-content: space-between;
+  }
+
+  .boton-secuencia {
+    max-width: 48%;
+    padding-inline: 0.8rem;
+  }
+
+  .carrusel--apariciones {
+    --slide-ancho: 85%;
+  }
+
+  .evolucion__tarjeta {
+    width: 130px;
+  }
+
+  .linea-evolutiva {
+    flex-direction: column;
+  }
+
+  .evolucion__flecha {
+    transform: rotate(90deg);
+  }
+}

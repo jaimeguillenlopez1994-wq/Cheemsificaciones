@@ -4,7 +4,7 @@
  * La búsqueda y el filtro se reflejan en la URL (?q=...&favoritos=1)
  * para conservarlos al volver desde una ficha.
  */
-import { PAGINACION } from './core/config.js';
+import { PAGINACION, STORAGE } from './core/config.js';
 import { obtenerPomkemons } from './core/data.js';
 import { normalizarTexto, debounce, mostrarEstado } from './core/utils.js';
 import { obtenerFavoritos } from './core/favoritos.js';
@@ -83,6 +83,12 @@ function guardarEnURL() {
   if (estado.soloFavoritos) parametros.set('favoritos', '1');
   const query = parametros.toString();
   history.replaceState(null, '', query ? `?${query}` : location.pathname);
+  // Para que "← Volver a la Pomkédex" en la ficha restaure esta búsqueda
+  try {
+    sessionStorage.setItem(STORAGE.ultimaBusqueda, query);
+  } catch {
+    /* Sin almacenamiento: el enlace de volver apunta a la Pomkédex sin filtros. */
+  }
 }
 
 const paginador = new Paginador({
