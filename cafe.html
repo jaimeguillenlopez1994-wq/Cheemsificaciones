@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tómate un café | Cheemsificaciones Pomkémon</title>
+  <meta name="description" content="Apoya a Cheemsificaciones Pomkémon con un café y recibe una tarjeta conmemorativa con tu Pomkémon favorito.">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages/cafe.css">
+</head>
+<body data-pagina="cafe">
+  <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+
+  <div class="sitio">
+    <header id="encabezado"></header>
+
+    <main id="contenido" class="contenido" tabindex="-1">
+      <div class="pagina-cabecera">
+        <h1 class="pagina-cabecera__titulo">Tómate un café</h1>
+        <p class="pagina-cabecera__texto">
+          Invítale un café a tu Pomkémon favorito (o a alguien especial) y recibe una tarjeta conmemorativa.
+          Donativo mínimo: <strong id="monto-minimo">$10 MXN</strong>.
+        </p>
+      </div>
+
+      <div class="cafe">
+        <form class="cafe__formulario" id="formulario-cafe" novalidate>
+          <!-- Paso 1: modalidad -->
+          <fieldset class="paso">
+            <legend class="paso__titulo"><span class="paso__numero">1</span> ¿Para quién es el café?</legend>
+            <div class="opciones">
+              <label class="opcion">
+                <input type="radio" name="modalidad" value="personal" checked>
+                <span class="opcion__tarjeta">
+                  <span class="opcion__icono" aria-hidden="true">☕</span>
+                  <span class="opcion__titulo">Para mí</span>
+                  <span class="opcion__texto">Tómate un café con tu Pomkémon favorito.</span>
+                </span>
+              </label>
+              <label class="opcion">
+                <input type="radio" name="modalidad" value="regalo">
+                <span class="opcion__tarjeta">
+                  <span class="opcion__icono" aria-hidden="true">🎁</span>
+                  <span class="opcion__titulo">De regalo</span>
+                  <span class="opcion__texto">Envíale un café a alguien más.</span>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Paso 2: datos de la tarjeta -->
+          <fieldset class="paso">
+            <legend class="paso__titulo"><span class="paso__numero">2</span> Personaliza tu tarjeta</legend>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="pomkemon">Pomkémon</label>
+              <select class="campo__control" id="pomkemon" name="pomkemon" required>
+                <option value="">Cargando Pomkémon...</option>
+              </select>
+              <p class="campo__error" id="error-pomkemon" hidden></p>
+            </div>
+
+            <div class="campo">
+              <div class="campo__cabecera">
+                <label class="campo__etiqueta" for="remitente" id="etiqueta-remitente">Tu nombre</label>
+                <span class="campo__contador" id="contador-remitente" aria-hidden="true">0/25</span>
+              </div>
+              <input class="campo__control" type="text" id="remitente" name="remitente" maxlength="25" autocomplete="given-name" required>
+              <p class="campo__error" id="error-remitente" hidden></p>
+            </div>
+
+            <div class="campo" id="campo-destinatario" hidden>
+              <div class="campo__cabecera">
+                <label class="campo__etiqueta" for="destinatario">Nombre de quien recibe el café</label>
+                <span class="campo__contador" id="contador-destinatario" aria-hidden="true">0/25</span>
+              </div>
+              <input class="campo__control" type="text" id="destinatario" name="destinatario" maxlength="25" autocomplete="off">
+              <p class="campo__error" id="error-destinatario" hidden></p>
+            </div>
+
+            <div class="campo">
+              <div class="campo__cabecera">
+                <label class="campo__etiqueta" for="mensaje">Mensaje personalizado <span class="campo__opcional">(opcional)</span></label>
+                <span class="campo__contador" id="contador-mensaje" aria-live="polite">0/140</span>
+              </div>
+              <textarea class="campo__control campo__control--area" id="mensaje" name="mensaje" maxlength="140" rows="3"></textarea>
+            </div>
+          </fieldset>
+
+          <!-- Paso 3: donativo -->
+          <fieldset class="paso">
+            <legend class="paso__titulo"><span class="paso__numero">3</span> Haz tu donativo</legend>
+            <p class="paso__texto">
+              Elige una plataforma (se abre en una pestaña nueva). El donativo mínimo es de
+              <strong class="monto-minimo">$10 MXN</strong>. Cuando termines, vuelve aquí y genera tu tarjeta.
+            </p>
+            <div class="plataformas" id="plataformas"></div>
+
+            <button class="boton-ovalado boton-generar" type="submit" id="generar" data-sfx-click="none">
+              Ya doné, generar mi tarjeta
+            </button>
+            <p class="campo__error campo__error--general" id="error-general" role="alert" hidden></p>
+          </fieldset>
+        </form>
+
+        <!-- Vista previa en vivo -->
+        <aside class="cafe__vista" aria-labelledby="titulo-vista">
+          <h2 class="cafe__vista-titulo" id="titulo-vista">Vista previa</h2>
+          <div class="tarjeta-escala" id="tarjeta-escala">
+            <div class="tarjeta-cafe" id="tarjeta-cafe">
+              <p class="tarjeta-cafe__texto" id="tarjeta-texto"></p>
+              <div class="tarjeta-cafe__composicion">
+                <img class="tarjeta-cafe__taza" id="tarjeta-taza" src="assets/img/cafe/cafe.png" alt="" data-sin-respaldo>
+                <img class="tarjeta-cafe__pomkemon" id="tarjeta-pomkemon" src="assets/img/ui/placeholder.svg" alt="">
+              </div>
+              <p class="tarjeta-cafe__mensaje" id="tarjeta-mensaje" hidden></p>
+              <p class="tarjeta-cafe__gracias" id="tarjeta-gracias"></p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer id="pie"></footer>
+  </div>
+
+  <!-- Resultado: tarjeta generada -->
+  <dialog class="modal modal--resultado" id="modal-resultado" aria-labelledby="resultado-titulo">
+    <div class="modal__contenido">
+      <h2 class="modal__titulo" id="resultado-titulo">¡Gracias por tu café!</h2>
+      <img class="resultado__imagen" id="resultado-imagen" alt="Tu tarjeta conmemorativa">
+      <div class="resultado__acciones">
+        <a class="boton-ovalado" id="resultado-descargar" download="tarjeta-cafe-pomkemon.png">Descargar PNG</a>
+        <button class="boton-ovalado boton-ovalado--secundario" type="button" id="resultado-compartir" hidden>Compartir</button>
+        <button class="boton-ovalado boton-ovalado--secundario" type="button" id="resultado-copiar-imagen" hidden>Copiar imagen</button>
+        <button class="boton-ovalado boton-ovalado--secundario" type="button" id="resultado-copiar-texto">Copiar mensaje</button>
+      </div>
+      <p class="resultado__aviso" id="resultado-aviso" role="status" aria-live="polite"></p>
+      <button class="modal__cerrar" type="button" data-cerrar-modal aria-label="Cerrar">×</button>
+    </div>
+  </dialog>
+
+  <script src="vendor/html2canvas.min.js" defer></script>
+  <script src="vendor/canvas-confetti.js" defer></script>
+  <script type="module" src="js/core/layout.js"></script>
+  <script type="module" src="js/cafe.js"></script>
+</body>
+</html>

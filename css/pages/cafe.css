@@ -1,0 +1,387 @@
+/* ==========================================================================
+   Tómate un café — formulario, vista previa de la tarjeta y resultado
+   ========================================================================== */
+
+.cafe {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 540px);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+}
+
+/* ---------- Pasos del formulario ---------- */
+.cafe__formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.paso {
+  min-width: 0;
+  margin: 0;
+  padding: 1.25rem 1.4rem 1.5rem;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--beige);
+}
+
+.paso__titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  float: left; /* hace que el <legend> quede dentro del recuadro */
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0;
+  font-family: var(--fuente-titulos);
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.paso__titulo + * {
+  clear: both;
+}
+
+.paso__numero {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--rojo);
+  color: var(--blanco);
+  font-size: 1rem;
+}
+
+.paso__texto {
+  margin-bottom: 1rem;
+  color: var(--texto-suave);
+}
+
+/* Tarjetas de modalidad (radio) */
+.opciones {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.opcion input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.opcion__tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  height: 100%;
+  padding: 1rem 1.1rem;
+  border: 2px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--blanco);
+  cursor: pointer;
+  transition: border-color var(--transicion), box-shadow var(--transicion), transform var(--transicion);
+}
+
+.opcion__tarjeta:hover {
+  border-color: #d8b9b3;
+  transform: translateY(-2px);
+}
+
+.opcion input:checked + .opcion__tarjeta {
+  border-color: var(--rojo);
+  box-shadow: 0 0 0 3px rgba(160, 22, 31, 0.15);
+}
+
+.opcion input:focus-visible + .opcion__tarjeta {
+  outline: 3px solid var(--amarillo);
+  outline-offset: 2px;
+}
+
+.opcion__icono {
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.opcion__titulo {
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.opcion__texto {
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Campos */
+.campo + .campo {
+  margin-top: 1.1rem;
+}
+
+.campo__cabecera {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.campo__etiqueta {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+}
+
+.campo__opcional {
+  color: var(--texto-suave);
+  font-weight: 400;
+}
+
+.campo__contador {
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.campo__contador--limite {
+  color: var(--rojo);
+  font-weight: 700;
+}
+
+.campo__control {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.6rem 0.9rem;
+  border: 2px solid var(--borde);
+  border-radius: 10px;
+  background: var(--blanco);
+  font-size: 1rem;
+  transition: border-color var(--transicion), box-shadow var(--transicion);
+}
+
+.campo__control:focus {
+  outline: none;
+  border-color: var(--rojo);
+  box-shadow: 0 0 0 3px rgba(242, 181, 58, 0.5);
+}
+
+.campo__control[aria-invalid="true"] {
+  border-color: var(--rojo);
+  background: #fff6f6;
+}
+
+.campo__control--area {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.5;
+}
+
+.campo__error {
+  margin-top: 0.35rem;
+  color: var(--rojo-oscuro);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.campo__error--general {
+  margin-top: 0.9rem;
+  text-align: center;
+}
+
+/* Plataformas de pago */
+.plataformas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.plataforma {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 140px;
+  min-height: 48px;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  color: var(--blanco);
+  font-weight: 800;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  transition: transform var(--transicion), filter var(--transicion);
+}
+
+.plataforma:hover {
+  color: var(--blanco);
+  text-decoration: none;
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.plataforma--kofi        { background: #13c3ff; color: #1a1a1a; }
+.plataforma--kofi:hover  { color: #1a1a1a; }
+.plataforma--mercadopago { background: #009ee3; }
+.plataforma--paypal      { background: #003087; }
+
+.boton-generar {
+  width: 100%;
+  margin-top: 1.4rem;
+  min-height: 58px;
+  font-size: 1.15rem;
+}
+
+.boton-generar:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+/* ---------- Vista previa ---------- */
+.cafe__vista {
+  position: sticky;
+  top: 1rem;
+  min-width: 0;
+}
+
+.cafe__vista-titulo {
+  margin-bottom: 0.75rem;
+  font-size: 1.2rem;
+  color: var(--texto-suave);
+}
+
+/* Contenedor que escala la tarjeta de 540 px al ancho disponible */
+.tarjeta-escala {
+  --escala-tarjeta: 1;
+  width: 540px;
+  transform: scale(var(--escala-tarjeta));
+  transform-origin: top left;
+}
+
+/* ---------- Tarjeta conmemorativa (lo que se exporta a PNG) ---------- */
+.tarjeta-cafe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 540px;
+  height: 540px;
+  padding: 28px 32px 22px;
+  overflow: hidden;
+  background: #ffffff url("../../assets/img/cafe/tarjeta-fondo.png") center / cover no-repeat;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  color: #111111;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+.tarjeta-cafe__texto {
+  max-width: 460px;
+  font-size: 19px;
+  line-height: 1.35;
+}
+
+.tarjeta-cafe__nombre {
+  color: #d10000;
+  font-weight: 700;
+}
+
+.tarjeta-cafe__composicion {
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  min-height: 0;
+  width: 100%;
+  padding-block: 10px 6px;
+  overflow: hidden;
+}
+
+/* Sin object-fit (html2canvas no lo soporta): alto automático para no deformar */
+.tarjeta-cafe__taza {
+  flex-shrink: 0;
+  width: 130px;
+  height: auto;
+  max-height: 130px;
+}
+
+.tarjeta-cafe__pomkemon {
+  width: 230px;
+  height: auto;
+  max-height: 230px;
+}
+
+.tarjeta-cafe__mensaje {
+  max-width: 470px;
+  margin-top: 6px;
+  color: #e53935;
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.tarjeta-cafe__gracias {
+  margin-top: 14px;
+  color: #666666;
+  font-size: 12.5px;
+}
+
+/* ---------- Ventana de resultado ---------- */
+.modal--resultado {
+  width: min(640px, calc(100% - 2rem));
+}
+
+.resultado__imagen {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  box-shadow: var(--sombra);
+}
+
+.resultado__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.resultado__acciones .boton-ovalado {
+  min-height: 46px;
+  padding: 0.55rem 1.4rem;
+  font-size: 1rem;
+}
+
+.resultado__aviso {
+  min-height: 1.5em;
+  margin-top: 0.75rem;
+  color: var(--granate);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .cafe {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cafe__vista {
+    position: static;
+    max-width: 540px;
+    width: 100%;
+    margin-inline: auto;
+    order: -1; /* en pantallas estrechas la vista previa va arriba */
+  }
+}
+
+@media (max-width: 480px) {
+  .opciones {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .paso {
+    padding: 1rem 1rem 1.25rem;
+  }
+}
