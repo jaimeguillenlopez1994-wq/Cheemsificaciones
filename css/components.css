@@ -374,3 +374,69 @@
   .carrusel__flecha--prev { left: -8px; }
   .carrusel__flecha--next { right: -8px; }
 }
+
+/* ---------- Cabecera de página (Novedades, Memes, Recursos...) ---------- */
+.pagina-cabecera {
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  padding-bottom: 0.75rem;
+  border-bottom: 3px solid var(--rojo);
+}
+
+.pagina-cabecera__texto {
+  margin-top: 0.35rem;
+  color: var(--texto-suave);
+  font-size: 1.1rem;
+}
+
+/* ---------- Enlace "← Volver a ..." ---------- */
+.enlace-volver {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--rojo);
+}
+
+/* ---------- Mini tarjeta de Pomkémon ---------- */
+.lista-mini-pomkemon {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.mini-pomkemon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 140px;
+  padding: 0.6rem;
+  border: 2px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--blanco);
+  color: var(--texto);
+  text-align: center;
+  transition: transform var(--transicion), border-color var(--transicion), box-shadow var(--transicion);
+}
+
+.mini-pomkemon:hover {
+  text-decoration: none;
+  transform: translateY(-3px);
+  border-color: var(--rojo);
+  box-shadow: var(--sombra);
+}
+
+.mini-pomkemon__imagen {
+  width: 100%;
+  margin-bottom: 0.4rem;
+}
+
+.mini-pomkemon__numero {
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+}
+
+.mini-pomkemon__nombre {
+  font-weight: 700;
+  line-height: 1.3;
+}

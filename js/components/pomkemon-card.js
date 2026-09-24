@@ -65,6 +65,16 @@ export function crearTarjetaPomkemon(pomkemon, { favorito = true } = {}) {
     </article>`;
 }
 
+/** Tarjeta compacta (miniatura + número + nombre) para posts y recursos. */
+export function crearMiniPomkemon(pomkemon) {
+  return `
+    <a class="mini-pomkemon" href="${enlacePomkemon(pomkemon.numero)}">
+      ${crearMarcoImagen(pomkemon, { clase: 'mini-pomkemon__imagen' })}
+      <span class="mini-pomkemon__numero">#${escaparHTML(pomkemon.numero)}</span>
+      <span class="mini-pomkemon__nombre">${escaparHTML(pomkemon.nombre)}</span>
+    </a>`;
+}
+
 /** Sincroniza el estado visual de todos los botones de favorito de un número. */
 function sincronizarBotones(numero, marcado) {
   document.querySelectorAll(`[data-favorito="${CSS.escape(numero)}"]`).forEach((boton) => {

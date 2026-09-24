@@ -12,12 +12,6 @@
   margin-bottom: 1.25rem;
 }
 
-.enlace-volver {
-  font-weight: 700;
-  font-size: 1.15rem;
-  color: var(--rojo);
-}
-
 .ficha-secuencia {
   display: flex;
   gap: 0.75rem;
