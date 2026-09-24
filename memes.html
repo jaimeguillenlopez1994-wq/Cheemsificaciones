@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memes | Cheemsificaciones Pomkémon</title>
+  <meta name="description" content="Memes de Cheemsificaciones Pomkémon.">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages/memes.css">
+</head>
+<body data-pagina="memes">
+  <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+
+  <div class="sitio">
+    <header id="encabezado"></header>
+
+    <main id="contenido" class="contenido" tabindex="-1">
+      <div class="pagina-cabecera">
+        <h1 class="pagina-cabecera__titulo">Memes</h1>
+        <p class="pagina-cabecera__texto">Toca cualquier meme para verlo en grande y descargarlo.</p>
+      </div>
+
+      <div class="grilla" id="grilla-memes">
+        <p class="estado estado--cargando">Cargando memes...</p>
+      </div>
+
+      <div class="ver-mas">
+        <button class="boton-ovalado" type="button" id="ver-mas" hidden>Ver más memes</button>
+      </div>
+    </main>
+
+    <footer id="pie"></footer>
+  </div>
+
+  <script type="module" src="js/core/layout.js"></script>
+  <script type="module" src="js/memes.js"></script>
+</body>
+</html>
