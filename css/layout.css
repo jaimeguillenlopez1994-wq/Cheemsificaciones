@@ -1,0 +1,399 @@
+/* ==========================================================================
+   Cheemsificaciones Pomkémon — layout.css
+   Fondo general, marcos laterales, contenedor central, header, nav,
+   botón de audio, footer y ventana "Acerca de...".
+   ========================================================================== */
+
+/* ---------- Fondo general ----------
+   Capa 1: textura real (assets/img/ui/fondo-patron.webp) si existe.
+   Capa 2: patrón de "tazos" generado con SVG como respaldo.            */
+body {
+  background-color: var(--fondo-oscuro);
+  background-image:
+    url("../assets/img/ui/fondo-patron.webp"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='165'%3E%3Crect x='25' y='22' width='150' height='105' rx='30' fill='none' stroke='%235b4570' stroke-width='4'/%3E%3C/svg%3E");
+  background-repeat: repeat, repeat;
+  background-position: center top, center top;
+  background-attachment: fixed, fixed;
+}
+
+/* ---------- Contenedor central + marcos laterales de película ---------- */
+.sitio {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--ancho-sitio);
+  min-height: 100vh;
+  margin-inline: auto;
+  background: var(--blanco);
+  box-shadow: var(--sombra-fuerte);
+}
+
+.sitio::before,
+.sitio::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--ancho-marco);
+  background:
+    url("../assets/img/ui/marco-lateral.webp"),
+    repeating-linear-gradient(135deg, var(--franja-1) 0 14px, var(--franja-2) 14px 28px);
+  pointer-events: none;
+}
+
+.sitio::before { right: 100%; }
+.sitio::after  { left: 100%; }
+
+/* Los marcos solo se dibujan si hay espacio fuera del contenedor */
+@media (max-width: 1372px) /* --ancho-sitio + 2 × --ancho-marco */ {
+  .sitio::before,
+  .sitio::after {
+    display: none;
+  }
+}
+
+.contenido:focus {
+  outline: none;
+}
+
+.contenido {
+  flex: 1;
+  width: 100%;
+  padding: clamp(1.25rem, 4vw, 2.75rem) clamp(1rem, 6.5vw, 5.5rem);
+}
+
+/* ---------- Header ---------- */
+.encabezado {
+  position: relative;
+  background: var(--blanco);
+}
+
+.encabezado__barra {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.75rem 1rem 1.5rem;
+}
+
+/* Logo (texto provisional o imagen definida en config.js) */
+.logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  padding: 0.9rem 2.2rem 0.8rem;
+  background: var(--beige-logo);
+  border: 4px solid var(--granate);
+  border-radius: var(--radio-grande);
+  color: var(--granate);
+  text-align: center;
+  transition: transform var(--transicion), box-shadow var(--transicion);
+}
+
+.logo:hover {
+  text-decoration: none;
+  transform: translateY(-2px) rotate(-1deg);
+  box-shadow: 0 6px 16px rgba(107, 13, 20, 0.2);
+}
+
+.logo__titulo {
+  font-family: var(--fuente-titulos);
+  font-size: clamp(1.35rem, 3.6vw, 2.3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 0.5px;
+}
+
+.logo__autor {
+  margin-top: 0.3rem;
+  font-size: clamp(0.85rem, 1.6vw, 1.05rem);
+  color: var(--texto);
+}
+
+.logo--imagen {
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.logo--imagen img {
+  max-height: 140px;
+  width: auto;
+}
+
+/* ---------- Botón de audio (mute / unmute) ---------- */
+.boton-audio {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 3px solid var(--rojo);
+  border-radius: 50%;
+  background: var(--blanco);
+  color: var(--rojo);
+  transition: background var(--transicion), color var(--transicion), transform var(--transicion);
+}
+
+.boton-audio:hover {
+  background: var(--rojo);
+  color: var(--blanco);
+  transform: scale(1.06);
+}
+
+.boton-audio svg {
+  width: 24px;
+  height: 24px;
+}
+
+.boton-audio .icono-silencio { display: none; }
+.boton-audio[aria-pressed="true"] .icono-sonido { display: none; }
+.boton-audio[aria-pressed="true"] .icono-silencio { display: block; }
+
+/* ---------- Navegación ---------- */
+.nav {
+  position: relative;
+  z-index: 1;
+  background: var(--rojo);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.nav__lista {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.nav__item {
+  flex: 1 1 0;
+}
+
+.nav__item + .nav__item {
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.nav__enlace {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 72px;
+  padding: 0.75rem 0.5rem;
+  color: var(--blanco);
+  font-weight: 700;
+  font-size: 1.15rem;
+  text-align: center;
+  border-bottom: 4px solid transparent;
+  transition: background var(--transicion), border-color var(--transicion);
+}
+
+.nav__enlace:hover {
+  background: var(--rojo-hover);
+  text-decoration: none;
+}
+
+.nav__enlace[aria-current="page"] {
+  background: var(--rojo-oscuro);
+  border-bottom-color: var(--amarillo);
+}
+
+/* ---------- Bloques genéricos de sección ---------- */
+.bloque {
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  background: var(--beige);
+  border: 2px dashed var(--borde);
+  border-radius: var(--radio);
+}
+
+.bloque + .bloque {
+  margin-top: clamp(2rem, 6vw, 5rem);
+}
+
+.bloque__titulo {
+  margin-bottom: 0.75rem;
+}
+
+.bloque__texto {
+  color: var(--texto-suave);
+  font-size: 1.1rem;
+}
+
+/* ---------- Footer ---------- */
+.pie {
+  padding: 2.5rem 1.25rem 2rem;
+  background: var(--beige);
+  border-top: 1px solid var(--borde);
+  text-align: center;
+}
+
+.pie__titulo {
+  font-size: 1.2rem;
+  margin-bottom: 0.9rem;
+}
+
+.redes {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.redes__enlace {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 2px solid #c0555d;
+  border-radius: 50%;
+  color: #c0555d;
+  background: var(--blanco);
+  transition: background var(--transicion), color var(--transicion), transform var(--transicion);
+}
+
+.redes__enlace:hover {
+  background: var(--rojo);
+  border-color: var(--rojo);
+  color: var(--blanco);
+  transform: translateY(-3px);
+}
+
+.redes__enlace svg {
+  width: 22px;
+  height: 22px;
+}
+
+.pie__acerca {
+  margin-top: 1.75rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--texto);
+  border-bottom: 2px solid currentColor;
+  line-height: 1.3;
+  transition: color var(--transicion);
+}
+
+.pie__acerca:hover {
+  color: var(--rojo);
+}
+
+.pie__disclaimer {
+  max-width: 950px;
+  margin: 1.75rem auto 0;
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+.pie__copy {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+/* ---------- Ventana emergente "Acerca de..." (<dialog>) ---------- */
+.modal {
+  width: min(560px, calc(100% - 2rem));
+  max-height: calc(100vh - 2rem);
+  margin: auto;
+  padding: 0;
+  border: 4px solid var(--granate);
+  border-radius: var(--radio-grande);
+  background: var(--beige-logo);
+  color: var(--texto);
+  box-shadow: var(--sombra-fuerte);
+}
+
+.modal::backdrop {
+  background: rgba(21, 18, 26, 0.75);
+}
+
+.modal[open] {
+  animation: modal-entrada 0.25s ease-out;
+}
+
+@keyframes modal-entrada {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+.modal__contenido {
+  position: relative;
+  padding: 2.25rem 2rem 2rem;
+}
+
+.modal__titulo {
+  margin-bottom: 1rem;
+  padding-right: 2.5rem;
+  color: var(--granate);
+}
+
+.modal__texto + .modal__texto {
+  margin-top: 0.75rem;
+}
+
+.modal__cerrar {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--rojo);
+  color: var(--blanco);
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: background var(--transicion), transform var(--transicion);
+}
+
+.modal__cerrar:hover {
+  background: var(--rojo-oscuro);
+  transform: rotate(90deg);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  .encabezado__barra {
+    padding: 1.25rem 4.25rem 1.25rem 1rem;
+    justify-content: flex-start;
+  }
+
+  .logo {
+    padding: 0.7rem 1.1rem;
+    border-width: 3px;
+  }
+
+  .nav__lista {
+    flex-wrap: wrap;
+  }
+
+  .nav__item {
+    flex: 1 1 33.333%;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .nav__item + .nav__item {
+    border-left: none;
+  }
+
+  .nav__enlace {
+    min-height: 54px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav__item {
+    flex-basis: 50%;
+  }
+
+  .nav__item:last-child {
+    flex-basis: 100%;
+  }
+}

@@ -7,6 +7,10 @@
 export const SITIO = {
   nombre: 'Cheemsificaciones Pomkémon',
   autor: 'Yeims',
+  anio: 2026,
+  // Cuando exista el logo definitivo: 'assets/img/ui/logo.webp'.
+  // Mientras sea null se muestra el logo de texto provisional.
+  logo: null,
 };
 
 /* ---------- Rutas ---------- */
