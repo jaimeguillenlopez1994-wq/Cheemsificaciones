@@ -7,6 +7,8 @@
   <meta name="description" content="Cheemsificaciones Pomkémon: fanarts de Pokémon al estilo Cheems por Yeims.">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages/index.css">
 </head>
 <body data-pagina="inicio">
   <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
@@ -15,16 +17,31 @@
     <header id="encabezado"></header>
 
     <main id="contenido" class="contenido" tabindex="-1">
-      <!-- Paso 6: carrusel con las 3 novedades más recientes -->
-      <section class="bloque" aria-labelledby="titulo-novedades">
-        <h2 class="bloque__titulo" id="titulo-novedades">Novedades</h2>
-        <p class="bloque__texto">Este bloque se construirá en el Paso 6.</p>
+      <h1 class="visualmente-oculto">Cheemsificaciones Pomkémon</h1>
+
+      <section class="inicio-seccion" aria-labelledby="titulo-novedades">
+        <div class="inicio-seccion__cabecera">
+          <h2 class="inicio-seccion__titulo" id="titulo-novedades">Novedades</h2>
+          <a class="inicio-seccion__enlace" href="novedades.html">Ver todas →</a>
+        </div>
+        <div id="carrusel-novedades">
+          <p class="estado estado--cargando">Cargando novedades...</p>
+        </div>
       </section>
 
-      <!-- Paso 6: 3 Pomkémon al azar -->
-      <section class="bloque" aria-labelledby="titulo-conoce">
-        <h2 class="bloque__titulo" id="titulo-conoce">Conoce a...</h2>
-        <p class="bloque__texto">Aquí aparecerán tres Pomkémon elegidos al azar.</p>
+      <section class="inicio-seccion" aria-labelledby="titulo-conoce">
+        <div class="inicio-seccion__cabecera">
+          <h2 class="inicio-seccion__titulo" id="titulo-conoce">Conoce a...</h2>
+          <button class="boton-ovalado boton-ovalado--secundario boton-ovalado--chico" type="button" id="otros-pomkemon" hidden>
+            <span aria-hidden="true">🎲</span> Conocer a otros
+          </button>
+        </div>
+        <div class="grilla" id="conoce-a" aria-live="polite">
+          <p class="estado estado--cargando">Cargando Pomkémon...</p>
+        </div>
+        <div class="ver-mas">
+          <a class="boton-ovalado" href="pomkedex.html">Ver toda la Pomkédex</a>
+        </div>
       </section>
 
       <noscript>
@@ -36,5 +53,6 @@
   </div>
 
   <script type="module" src="js/core/layout.js"></script>
+  <script type="module" src="js/index.js"></script>
 </body>
 </html>

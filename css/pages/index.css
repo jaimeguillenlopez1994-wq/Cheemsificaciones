@@ -1,0 +1,141 @@
+/* ==========================================================================
+   Página principal — carrusel de novedades y "Conoce a..."
+   ========================================================================== */
+
+.inicio-seccion + .inicio-seccion {
+  margin-top: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.inicio-seccion__cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 3px solid var(--rojo);
+}
+
+.inicio-seccion__titulo {
+  font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+}
+
+.inicio-seccion__enlace {
+  font-weight: 700;
+}
+
+.boton-ovalado--chico {
+  min-height: 40px;
+  padding: 0.4rem 1.2rem;
+  font-size: 0.95rem;
+}
+
+/* ---------- Banner de novedad (una diapositiva) ---------- */
+.banner-novedad {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 7;
+  min-height: 260px;
+  overflow: hidden;
+  border-radius: var(--radio);
+  background: var(--beige);
+  color: var(--blanco);
+}
+
+.banner-novedad:hover {
+  text-decoration: none;
+}
+
+.banner-novedad__imagen {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.banner-novedad__imagen.es-respaldo {
+  object-fit: contain;
+  padding: 1.5rem 1.5rem 7rem;
+}
+
+.banner-novedad:hover .banner-novedad__imagen {
+  transform: scale(1.03);
+}
+
+/* Degradado para que el texto se lea sobre cualquier imagen */
+.banner-novedad::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(20, 8, 10, 0.88) 0%, rgba(20, 8, 10, 0.55) 40%, rgba(20, 8, 10, 0) 75%);
+}
+
+.banner-novedad__contenido {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: clamp(1.25rem, 3.5vw, 2.5rem);
+  padding-bottom: clamp(1.25rem, 3.5vw, 2.25rem);
+}
+
+.banner-novedad__fecha {
+  align-self: flex-start;
+  padding: 0.15rem 0.75rem;
+  border-radius: 999px;
+  background: var(--amarillo);
+  color: var(--texto);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.banner-novedad__titulo {
+  font-family: var(--fuente-titulos);
+  font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.banner-novedad__resumen {
+  max-width: 70ch;
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  opacity: 0.95;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.banner-novedad__leer {
+  margin-top: 0.35rem;
+  font-weight: 700;
+  color: var(--amarillo);
+}
+
+.carrusel--novedades .carrusel__flecha--prev { left: 12px; }
+.carrusel--novedades .carrusel__flecha--next { right: 12px; }
+
+@media (max-width: 560px) {
+  .banner-novedad {
+    aspect-ratio: 4 / 5;
+    min-height: 0;
+  }
+
+  .banner-novedad__imagen.es-respaldo {
+    padding-bottom: 11rem;
+  }
+
+  .banner-novedad__resumen {
+    -webkit-line-clamp: 3;
+  }
+
+  .carrusel--novedades .carrusel__flecha {
+    top: 38%;
+  }
+}
