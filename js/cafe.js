@@ -3,8 +3,8 @@
  * conmemorativa, generación del PNG (html2canvas), confeti (canvas-confetti),
  * sonido de donativo y opciones para compartir.
  *
- * El sitio no puede verificar pagos externos: la tarjeta se genera al pulsar
- * "Ya doné, generar mi tarjeta" (sistema de confianza).
+ * La tarjeta es gratis para todos; el donativo es opcional y solo se invita
+ * (en la página y en la ventana del resultado).
  */
 import { DONACION, TEXTOS, SITIO } from './core/config.js';
 import { obtenerPomkemons, obtenerPomkemon } from './core/data.js';
@@ -34,7 +34,8 @@ const el = {
   taza: $('tarjeta-taza'),
   imagenPomkemon: $('tarjeta-pomkemon'),
   mensajeTarjeta: $('tarjeta-mensaje'),
-  gracias: $('tarjeta-gracias'),
+  pie: $('tarjeta-pie'),
+  resultadoPlataformas: $('resultado-plataformas'),
   modal: $('modal-resultado'),
   resultadoImagen: $('resultado-imagen'),
   descargar: $('resultado-descargar'),
@@ -234,7 +235,7 @@ function nombreArchivo() {
 }
 
 function mensajeParaCompartir() {
-  return `${leyendaTexto(datosFormulario())}\n\n${TEXTOS.agradecimientoDonativo}\n${location.origin}${location.pathname}`;
+  return `${leyendaTexto(datosFormulario())}\n\n${TEXTOS.pieTarjeta}\n${location.origin}${location.pathname}`;
 }
 
 async function mostrarResultado(blob) {
@@ -274,7 +275,7 @@ async function alGenerar(evento) {
     el.errorGeneral.hidden = false;
   } finally {
     el.generar.disabled = false;
-    el.generar.textContent = 'Ya doné, generar mi tarjeta';
+    el.generar.innerHTML = '<span aria-hidden="true">☕</span> Generar mi tarjeta';
   }
 }
 
@@ -317,16 +318,15 @@ async function copiarTexto() {
 /* ---------- Inicio ---------- */
 
 function renderizarPlataformas() {
-  const monto = `$${DONACION.montoMinimo} ${DONACION.moneda}`;
-  document.querySelectorAll('#monto-minimo, .monto-minimo').forEach((nodo) => { nodo.textContent = monto; });
-
-  el.plataformas.innerHTML = DONACION.plataformas
-    .map((p) => `
-      <a class="plataforma plataforma--${escaparHTML(p.id)}" href="${escaparHTML(p.url)}" target="_blank" rel="noopener noreferrer">
-        ${escaparHTML(p.nombre)}
-        <span class="visualmente-oculto">(se abre en una pestaña nueva)</span>
-      </a>`)
-    .join('');
+  const enlaces = (clase) =>
+    DONACION.plataformas
+      .map((p) => `
+        <a class="${clase} ${clase}--${escaparHTML(p.id)}" href="${escaparHTML(p.url)}" target="_blank" rel="noopener noreferrer">
+          ${escaparHTML(p.nombre)}<span class="visualmente-oculto"> (se abre en una pestaña nueva)</span>
+        </a>`)
+      .join(clase === 'enlace-plataforma' ? '<span aria-hidden="true"> · </span>' : '');
+  el.plataformas.innerHTML = enlaces('plataforma');
+  el.resultadoPlataformas.innerHTML = enlaces('enlace-plataforma');
 }
 
 async function cargarPomkemons() {
@@ -380,7 +380,7 @@ function registrarEventos() {
 }
 
 async function iniciar() {
-  el.gracias.textContent = TEXTOS.agradecimientoDonativo;
+  el.pie.textContent = TEXTOS.pieTarjeta;
   renderizarPlataformas();
   renderizarFondos();
   aplicarFondo(DONACION.fondos[0]?.id);

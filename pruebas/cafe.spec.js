@@ -6,6 +6,13 @@ test.beforeEach(async ({ page }) => {
   await expect(page.locator('#pomkemon option')).toHaveCount(19);
 });
 
+test('la tarjeta es gratis: sin pasos de pago obligatorios y con invitación opcional', async ({ page }) => {
+  await expect(page.locator('.pagina-cabecera__texto')).toContainText('¡Es totalmente gratis!');
+  await expect(page.locator('#generar')).toHaveText(/Generar mi tarjeta/);
+  await expect(page.locator('.apoyo')).toContainText('(opcional)');
+  await expect(page.locator('.apoyo .plataforma')).toHaveCount(3);
+});
+
 test('valida los campos obligatorios', async ({ page }) => {
   await page.locator('#generar').click();
   await expect(page.locator('#error-pomkemon')).toBeVisible();
@@ -30,8 +37,10 @@ test('genera la tarjeta en PNG de 1080×1080 con el texto y el fondo elegidos', 
   await expect(page.locator('#tarjeta-texto')).toHaveText(
     'Fernando, te has tomado un café con Chimkorita, ahora se encuentra muy feliz y sus nivéles deamsiedad han bajado muchísimo!',
   );
+  await expect(page.locator('#tarjeta-pie')).toHaveText('Hecha con cariño en Cheemsificaciones Pomkémon - por Yeims');
   await page.locator('#generar').click();
   await expect(page.locator('#modal-resultado')).toBeVisible({ timeout: 15000 });
+  await expect(page.locator('#resultado-plataformas a')).toHaveCount(3);
 
   const [ancho, alto, pixel] = await page.locator('#resultado-imagen').evaluate(async (img) => {
     await img.decode();

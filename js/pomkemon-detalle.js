@@ -116,7 +116,7 @@ function plantillaFicha(pomkemon, habilidad) {
             ${plantillaHabilidad(habilidad, pomkemon.habilidad)}
           </section>
           <aside class="ficha__cafe">
-            <p class="ficha__cafe-texto">¿Te gusta ${nombre}? Invítale un café y recibe una tarjeta conmemorativa.</p>
+            <p class="ficha__cafe-texto">¿Te gusta ${nombre}? Tómate un café con este Pomkémon y llévate una tarjeta conmemorativa. ¡Es gratis!</p>
             <a class="boton-ovalado" href="cafe.html?pomkemon=${encodeURIComponent(pomkemon.numero)}">
               <span aria-hidden="true">☕</span> Tómate un café con ${nombre}
             </a>

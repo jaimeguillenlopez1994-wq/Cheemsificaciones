@@ -123,10 +123,10 @@ export const REDES = [
   { id: 'tiktok',    nombre: 'TikTok',    url: 'https://www.tiktok.com/@TU_USUARIO' },
 ];
 
-/* ---------- Donaciones (MARCADORES: reemplazar por las URLs reales) ---------- */
+/* ---------- "Tómate un café" ----------
+   La tarjeta es gratis para todos; el donativo es opcional.
+   Plataformas: MARCADORES, reemplazar por las URLs reales. */
 export const DONACION = {
-  montoMinimo: 10,
-  moneda: 'MXN',
   plataformas: [
     { id: 'kofi',        nombre: 'Ko-fi',        url: 'https://ko-fi.com/TU_USUARIO' },
     { id: 'mercadopago', nombre: 'Mercado Pago', url: 'https://link.mercadopago.com.mx/TU_USUARIO' },
@@ -154,7 +154,7 @@ export const DONACION = {
 /* ---------- Textos fijos ---------- */
 export const TEXTOS = {
   sinApariciones: 'Este Pomkémon no aparece en ningún catálogo',
-  agradecimientoDonativo: '¡Muchas gracias por tu donativo a nombre de Cheemsificaciones Pomkémon!',
+  pieTarjeta: 'Hecha con cariño en Cheemsificaciones Pomkémon - por Yeims',
   disclaimer:
     'Cheemsificaciones Pomkémon es un proyecto de fanart no oficial. Pokémon y sus personajes, ' +
     'nombres y marcas pertenecen a sus respectivos propietarios. Este sitio no está afiliado ni ' +

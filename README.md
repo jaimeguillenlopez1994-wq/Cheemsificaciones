@@ -136,7 +136,7 @@ El campo `pomkemons` de memes, novedades y recursos alimenta la sección **"Imá
 | Qué | Dónde |
 |---|---|
 | Enlaces de Facebook, Instagram y TikTok | `REDES` (ahora tienen marcadores `TU_USUARIO`) |
-| Enlaces de Ko-fi, Mercado Pago y PayPal.Me, monto mínimo | `DONACION` (marcadores `TU_USUARIO`) |
+| Enlaces de Ko-fi, Mercado Pago y PayPal.Me (donativo opcional) | `DONACION` (marcadores `TU_USUARIO`) |
 | Logo de imagen en lugar del de texto | `SITIO.logo` |
 | Usar los SVG de tipo en lugar de las píldoras de color | `USAR_SVG_TIPOS` |
 | Nombre y color de cada tipo | `TIPOS` |
@@ -199,7 +199,7 @@ Por eso los `id` de memes, novedades y recursos deben empezar por `meme-`, `post
 
 ## 8. Notas
 
-- **Donativos:** el sitio no puede verificar pagos hechos en plataformas externas; la tarjeta conmemorativa se genera cuando la persona pulsa "Ya doné, generar mi tarjeta" (sistema de confianza).
+- **Tómate un café:** crear la tarjeta conmemorativa es gratis para todos; el donativo (Ko-fi, Mercado Pago o PayPal) es opcional y solo se invita. El pie fijo de la tarjeta se edita en `TEXTOS.pieTarjeta`.
 - **Transiciones entre páginas:** al abrir una ficha, la imagen de la tarjeta "vuela" hasta su lugar (View Transitions; en navegadores sin soporte la navegación es normal).
 - **Guiño Cheems:** escribe `cheems` en cualquier página, o haz 5 clics rápidos en el logo en la portada. 🔨
 - **Favoritos y silencio** se guardan en el navegador de cada visitante (`localStorage`).

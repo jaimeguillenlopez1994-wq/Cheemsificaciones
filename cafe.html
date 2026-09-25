@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tómate un café | Cheemsificaciones Pomkémon</title>
-  <meta name="description" content="Apoya a Cheemsificaciones Pomkémon con un café y recibe una tarjeta conmemorativa con tu Pomkémon favorito.">
+  <meta name="description" content="Tómate un café gratis con tu Pomkémon favorito y crea una tarjeta conmemorativa para compartir.">
   <link rel="icon" href="assets/img/ui/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#a0161f">
@@ -25,12 +25,13 @@
       <div class="pagina-cabecera">
         <h1 class="pagina-cabecera__titulo">Tómate un café</h1>
         <p class="pagina-cabecera__texto">
-          Invítale un café a tu Pomkémon favorito (o a alguien especial) y recibe una tarjeta conmemorativa.
-          Donativo mínimo: <strong id="monto-minimo">$10 MXN</strong>.
+          Tómate un café con tu Pomkémon favorito (o regálaselo a alguien especial) y llévate una tarjeta
+          conmemorativa para compartir. <strong>¡Es totalmente gratis!</strong>
         </p>
       </div>
 
       <div class="cafe">
+        <div class="cafe__columna">
         <form class="cafe__formulario" id="formulario-cafe" novalidate>
           <!-- Paso 1: modalidad -->
           <fieldset class="paso">
@@ -99,21 +100,28 @@
             </fieldset>
           </fieldset>
 
-          <!-- Paso 3: donativo -->
-          <fieldset class="paso">
-            <legend class="paso__titulo"><span class="paso__numero">3</span> Haz tu donativo</legend>
-            <p class="paso__texto">
-              Elige una plataforma (se abre en una pestaña nueva). El donativo mínimo es de
-              <strong class="monto-minimo">$10 MXN</strong>. Cuando termines, vuelve aquí y genera tu tarjeta.
-            </p>
-            <div class="plataformas" id="plataformas"></div>
-
+          <!-- Paso 3: generar (gratis) -->
+          <div class="paso">
+            <h2 class="paso__titulo"><span class="paso__numero">3</span> ¡Genera tu tarjeta gratis!</h2>
+            <p class="paso__texto">Descárgala y compártela con quien quieras.</p>
             <button class="boton-ovalado boton-generar" type="submit" id="generar" data-sfx-click="none">
-              Ya doné, generar mi tarjeta
+              <span aria-hidden="true">☕</span> Generar mi tarjeta
             </button>
             <p class="campo__error campo__error--general" id="error-general" role="alert" hidden></p>
-          </fieldset>
+          </div>
         </form>
+
+        <!-- Donativo opcional -->
+        <section class="apoyo" aria-labelledby="titulo-apoyo">
+          <h2 class="apoyo__titulo" id="titulo-apoyo"><span aria-hidden="true">💛</span> Apoya a la comunidad <span class="apoyo__opcional">(opcional)</span></h2>
+          <p class="apoyo__texto">
+            Tomarte un café con tu Pomkémon favorito es y será siempre <strong>totalmente gratis</strong>.
+            Pero si te gusta el proyecto, un donativo, del tamaño que sea, nos ayuda muchísimo a seguir
+            dibujando y a que la comunidad de Cheemsificaciones siga creciendo.
+          </p>
+          <div class="plataformas" id="plataformas"></div>
+        </section>
+        </div>
 
         <!-- Vista previa en vivo -->
         <aside class="cafe__vista" aria-labelledby="titulo-vista">
@@ -126,7 +134,7 @@
                 <img class="tarjeta-cafe__pomkemon" id="tarjeta-pomkemon" src="assets/img/ui/placeholder.svg" alt="">
               </div>
               <p class="tarjeta-cafe__mensaje" id="tarjeta-mensaje" hidden></p>
-              <p class="tarjeta-cafe__gracias" id="tarjeta-gracias"></p>
+              <p class="tarjeta-cafe__pie" id="tarjeta-pie"></p>
             </div>
           </div>
         </aside>
@@ -139,7 +147,7 @@
   <!-- Resultado: tarjeta generada -->
   <dialog class="modal modal--resultado" id="modal-resultado" aria-labelledby="resultado-titulo">
     <div class="modal__contenido">
-      <h2 class="modal__titulo" id="resultado-titulo">¡Gracias por tu café!</h2>
+      <h2 class="modal__titulo" id="resultado-titulo">¡Tu tarjeta está lista!</h2>
       <img class="resultado__imagen" id="resultado-imagen" alt="Tu tarjeta conmemorativa">
       <div class="resultado__acciones">
         <a class="boton-ovalado" id="resultado-descargar" download="tarjeta-cafe-pomkemon.png">Descargar PNG</a>
@@ -148,6 +156,10 @@
         <button class="boton-ovalado boton-ovalado--secundario" type="button" id="resultado-copiar-texto">Copiar mensaje</button>
       </div>
       <p class="resultado__aviso" id="resultado-aviso" role="status" aria-live="polite"></p>
+      <p class="resultado__apoyo">
+        ¿Te gustó? Si quieres apoyar a Cheemsificaciones, puedes invitarnos un café de verdad
+        (opcional): <span id="resultado-plataformas"></span>
+      </p>
       <button class="modal__cerrar" type="button" data-cerrar-modal aria-label="Cerrar">×</button>
     </div>
   </dialog>

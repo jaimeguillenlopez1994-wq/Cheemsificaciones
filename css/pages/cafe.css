@@ -9,6 +9,38 @@
   align-items: start;
 }
 
+/* Columna izquierda: formulario + invitación a donar */
+.cafe__columna {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+/* ---------- Donativo opcional ---------- */
+.apoyo {
+  padding: 1.25rem 1.4rem 1.5rem;
+  border: 2px dashed #e7c46c;
+  border-radius: var(--radio);
+  background: #fffaf0;
+}
+
+.apoyo__titulo {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.apoyo__opcional {
+  color: var(--texto-suave);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.apoyo__texto {
+  margin-bottom: 1rem;
+  color: var(--texto-suave);
+}
+
 /* ---------- Pasos del formulario ---------- */
 .cafe__formulario {
   display: flex;
@@ -286,7 +318,7 @@
 
 .boton-generar {
   width: 100%;
-  margin-top: 1.4rem;
+  margin-top: 0.25rem;
   min-height: 58px;
   font-size: 1.15rem;
 }
@@ -381,7 +413,7 @@
   overflow-wrap: anywhere;
 }
 
-.tarjeta-cafe__gracias {
+.tarjeta-cafe__pie {
   margin-top: 14px;
   color: #666666;
   font-size: 12.5px;
@@ -421,6 +453,20 @@
   color: var(--granate);
   font-weight: 600;
   text-align: center;
+}
+
+.resultado__apoyo {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 2px dashed var(--borde);
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.enlace-plataforma {
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 /* ---------- Responsive ---------- */
