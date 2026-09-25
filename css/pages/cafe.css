@@ -9,17 +9,10 @@
   align-items: start;
 }
 
-/* Columna izquierda: formulario + invitación a donar */
-.cafe__columna {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  min-width: 0;
-}
-
 /* ---------- Donativo opcional ---------- */
 .apoyo {
-  padding: 1.25rem 1.4rem 1.5rem;
+  margin-top: 1.25rem;
+  padding: 1.1rem 1.25rem 1.25rem;
   border: 2px dashed #e7c46c;
   border-radius: var(--radio);
   background: #fffaf0;
@@ -294,7 +287,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex: 1 1 140px;
+  flex: 1 1 120px;
   min-height: 48px;
   padding: 0.6rem 1rem;
   border-radius: 999px;
@@ -329,10 +322,17 @@
 }
 
 /* ---------- Vista previa ---------- */
+/* Vista previa + invitación a donar. Solo se queda fija al desplazarse si cabe
+   entera en la pantalla (si no, la parte de abajo quedaría oculta). */
 .cafe__vista {
-  position: sticky;
-  top: 1rem;
   min-width: 0;
+}
+
+@media (min-width: 1101px) and (min-height: 880px) {
+  .cafe__vista {
+    position: sticky;
+    top: 1rem;
+  }
 }
 
 .cafe__vista-titulo {

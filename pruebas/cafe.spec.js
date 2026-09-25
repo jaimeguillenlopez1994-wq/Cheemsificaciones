@@ -53,3 +53,15 @@ test('genera la tarjeta en PNG de 1080×1080 con el texto y el fondo elegidos', 
   expect(pixel).toEqual([253, 230, 234]); // fondo "Rosa"
   await expect(page.locator('#resultado-descargar')).toHaveAttribute('download', 'cafe-con-chimkorita.png');
 });
+
+test('escritorio: vista previa y apoyo en la columna derecha, junto al formulario', async ({ page }, info) => {
+  test.skip(info.project.name !== 'escritorio', 'en móvil las columnas se apilan');
+  const formulario = await page.locator('#formulario-cafe').boundingBox();
+  const vista = await page.locator('.cafe__vista').boundingBox();
+  const tarjeta = await page.locator('#tarjeta-escala').boundingBox();
+  const apoyo = await page.locator('.apoyo').boundingBox();
+  expect(vista.x).toBeGreaterThan(formulario.x + formulario.width - 1); // a la derecha del formulario
+  expect(Math.abs(vista.y - formulario.y)).toBeLessThan(80); // a la misma altura
+  expect(apoyo.y).toBeGreaterThan(tarjeta.y + tarjeta.height - 1); // justo debajo de la vista previa
+  expect(apoyo.y - (tarjeta.y + tarjeta.height)).toBeLessThan(60);
+});
