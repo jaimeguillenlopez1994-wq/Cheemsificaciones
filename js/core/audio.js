@@ -13,7 +13,7 @@
 import { RUTAS, SONIDOS, STORAGE } from './config.js';
 
 const SELECTOR_INTERACTIVO = 'a[href], button, [data-sfx]';
-const VOLUMEN = { hover: 0.25, click: 0.5, favorite: 0.6, donation: 0.7 };
+const VOLUMEN = { hover: 0.25, click: 0.5, favorite: 0.6, donation: 0.7, bonk: 0.7 };
 const PAUSA_HOVER_MS = 80;
 const RETRASO_NAVEGACION_MS = 160;
 

@@ -11,6 +11,7 @@
 import { SITIO, NAV, REDES, TEXTOS } from './config.js';
 import { estaSilenciado, alternarSilencio } from './audio.js';
 import { activarImagenesRespaldo } from './utils.js';
+import './easter-egg.js';
 
 const ICONOS = {
   sonido: `

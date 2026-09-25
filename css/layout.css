@@ -101,14 +101,16 @@ body {
 
 .logo__titulo {
   font-family: var(--fuente-titulos);
-  font-size: clamp(1.35rem, 3.6vw, 2.3rem);
-  font-weight: 800;
+  font-size: clamp(1.45rem, 3.8vw, 2.5rem);
+  font-weight: 700;
   line-height: 1.1;
   letter-spacing: 0.5px;
 }
 
 .logo__autor {
-  margin-top: 0.3rem;
+  font-family: var(--fuente-titulos);
+  font-weight: 500;
+  margin-top: 0.2rem;
   font-size: clamp(0.85rem, 1.6vw, 1.05rem);
   color: var(--texto);
 }
@@ -122,6 +124,81 @@ body {
 .logo--imagen img {
   max-height: 140px;
   width: auto;
+}
+
+/* ---------- Guiño Cheems: ¡BONK! (js/core/easter-egg.js) ---------- */
+.logo {
+  position: relative;
+}
+
+.logo--bonk {
+  animation: bonk-aplastar 0.6s ease 0.25s;
+}
+
+.bonk {
+  position: absolute;
+  top: -34px;
+  right: -26px;
+  pointer-events: none;
+}
+
+.bonk__martillo {
+  display: block;
+  font-size: 3.2rem;
+  transform-origin: 85% 85%;
+  animation: bonk-martillo 0.5s ease-in forwards;
+}
+
+.bonk__texto {
+  position: absolute;
+  top: 58px;
+  right: 36px;
+  padding: 0.1rem 0.6rem;
+  border: 3px solid var(--texto);
+  border-radius: 8px;
+  background: var(--amarillo);
+  color: var(--texto);
+  font-family: var(--fuente-titulos);
+  font-size: 1.4rem;
+  font-weight: 700;
+  transform: rotate(-8deg) scale(0);
+  animation: bonk-texto 0.35s ease-out 0.35s forwards;
+}
+
+.aviso-bonk {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  z-index: 1500;
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  background: var(--texto);
+  color: var(--blanco);
+  font-weight: 700;
+  box-shadow: var(--sombra-fuerte);
+  transform: translateX(-50%);
+  animation: aviso-entrada 0.3s ease-out;
+}
+
+@keyframes bonk-martillo {
+  0%   { transform: rotate(45deg); }
+  70%  { transform: rotate(-35deg); }
+  100% { transform: rotate(-25deg); }
+}
+
+@keyframes bonk-aplastar {
+  0%, 100% { transform: none; }
+  30%      { transform: scale(1.08, 0.82); }
+  60%      { transform: scale(0.96, 1.05); }
+}
+
+@keyframes bonk-texto {
+  to { transform: rotate(-8deg) scale(1); }
+}
+
+@keyframes aviso-entrada {
+  from { opacity: 0; transform: translate(-50%, 12px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
 }
 
 /* ---------- Botón de audio (mute / unmute) ---------- */
@@ -178,6 +255,7 @@ body {
 }
 
 .nav__enlace {
+  font-family: var(--fuente-titulos);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,8 +263,9 @@ body {
   min-height: 72px;
   padding: 0.75rem 0.5rem;
   color: var(--blanco);
-  font-weight: 700;
-  font-size: 1.15rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 0.2px;
   text-align: center;
   border-bottom: 4px solid transparent;
   transition: background var(--transicion), border-color var(--transicion);

@@ -87,6 +87,7 @@ export const SONIDOS = {
   click: 'click.mp3',
   favorite: 'favorite.mp3',
   donation: 'donation.mp3',
+  bonk: 'bonk.mp3', // guiño Cheems (opcional)
 };
 
 /* ---------- Claves de localStorage ---------- */
@@ -126,7 +127,17 @@ export const DONACION = {
     destinatario: 25,
     mensaje: 140,
   },
-  fondoTarjeta: 'assets/img/cafe/tarjeta-fondo.png',
+  // Fondos de la tarjeta conmemorativa. El primero es el predeterminado.
+  // "imagen" es opcional (se dibuja sobre "color"); para añadir más, sube
+  // la imagen a assets/img/cafe/ y agrega otra entrada aquí.
+  fondos: [
+    { id: 'clasico', nombre: 'Clásico', color: '#ffffff', imagen: 'assets/img/cafe/tarjeta-fondo.png' },
+    { id: 'crema',   nombre: 'Crema',   color: '#fbf0da' },
+    { id: 'rosa',    nombre: 'Rosa',    color: '#fde6ea' },
+    { id: 'menta',   nombre: 'Menta',   color: '#e2f5ea' },
+    { id: 'cielo',   nombre: 'Cielo',   color: '#e3effc' },
+    { id: 'lavanda', nombre: 'Lavanda', color: '#efe7fb' },
+  ],
   imagenCafe: 'assets/img/cafe/cafe.png',
 };
 

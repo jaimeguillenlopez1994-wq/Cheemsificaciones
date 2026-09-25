@@ -3,6 +3,15 @@
    Variables, reset, tipografía y utilidades comunes a todo el sitio.
    ========================================================================== */
 
+/* Fredoka (SIL Open Font License) — fuente variable, pesos 300 a 700 */
+@font-face {
+  font-family: "Fredoka";
+  src: url("../assets/fonts/fredoka-latin-wght.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Paleta */
   --rojo: #a0161f;
@@ -23,7 +32,7 @@
 
   /* Tipografía */
   --fuente: "Segoe UI", "Helvetica Neue", Arial, system-ui, sans-serif;
-  --fuente-titulos: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+  --fuente-titulos: "Fredoka", "Trebuchet MS", "Segoe UI", Arial, sans-serif;
 
   /* Medidas */
   --ancho-sitio: 1300px;
@@ -105,6 +114,7 @@ h2,
 h3,
 h4 {
   font-family: var(--fuente-titulos);
+  font-weight: 600;
   line-height: 1.2;
   color: var(--texto);
 }
@@ -149,6 +159,24 @@ p {
 
 .saltar-contenido:focus {
   top: 0;
+}
+
+/* ---------- Transiciones animadas entre páginas (View Transitions) ----------
+   Los navegadores que no las soportan navegan como siempre. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.25s;
+  }
+
+  ::view-transition-group(*) {
+    animation-duration: 0.4s;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

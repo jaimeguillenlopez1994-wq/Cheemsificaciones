@@ -38,7 +38,7 @@ Mientras falte cualquiera de estos archivos el sitio sigue funcionando: las imá
 | Textura del fondo del sitio | `assets/img/ui/fondo-patron.webp` | Opcional: se repite en mosaico |
 | Marcos laterales | `assets/img/ui/marco-lateral.webp` | Opcional: franja vertical de 36 px de ancho |
 | Logo definitivo | `assets/img/ui/logo.webp` | Después pon su ruta en `SITIO.logo` de `config.js` |
-| Sonidos | `assets/audio/` | `hover.mp3`, `click.mp3`, `favorite.mp3`, `donation.mp3` |
+| Sonidos | `assets/audio/` | `hover.mp3`, `click.mp3`, `favorite.mp3`, `donation.mp3` y, opcional, `bonk.mp3` (guiño Cheems) |
 
 **Importante:** en rutas y nombres de archivo usa minúsculas, sin espacios ni tildes (GitHub Pages distingue mayúsculas de minúsculas).
 
@@ -135,6 +135,7 @@ El campo `pomkemons` de memes, novedades y recursos alimenta la sección **"Imá
 | Escala de los tamaños S / L / X | `ESCALAS` |
 | Cantidad por página (12 / 5) y tiempo del carrusel (7 s) | `PAGINACION`, `INICIO` |
 | Texto de "Acerca de...", disclaimer y mensajes fijos | `TEXTOS` |
+| Fondos de la tarjeta del café (colores y/o imágenes) | `DONACION.fondos` |
 
 ### Direcciones útiles
 
@@ -166,11 +167,14 @@ vendor/             librerías externas incluidas en el proyecto
 ## 7. Notas
 
 - **Donativos:** el sitio no puede verificar pagos hechos en plataformas externas; la tarjeta conmemorativa se genera cuando la persona pulsa "Ya doné, generar mi tarjeta" (sistema de confianza).
+- **Transiciones entre páginas:** al abrir una ficha, la imagen de la tarjeta "vuela" hasta su lugar (View Transitions; en navegadores sin soporte la navegación es normal).
+- **Guiño Cheems:** escribe `cheems` en cualquier página, o haz 5 clics rápidos en el logo en la portada. 🔨
 - **Favoritos y silencio** se guardan en el navegador de cada visitante (`localStorage`).
 - **Accesibilidad:** navegable con teclado, textos alternativos, contraste AA en colores y badges, y respeta la preferencia de "reducir movimiento" del sistema.
 
 ## 8. Librerías y licencias
 
+- Tipografía [Fredoka](https://github.com/hafontia/Fredoka-One) — SIL Open Font License (`assets/fonts/LICENSE-fredoka.txt`).
 - [html2canvas](https://html2canvas.hertzen.com) 1.4.1 — MIT (`vendor/LICENSE-html2canvas.txt`).
 - [canvas-confetti](https://github.com/catdad/canvas-confetti) 1.9.3 — ISC (`vendor/LICENSE-canvas-confetti.txt`).
 

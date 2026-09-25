@@ -25,6 +25,7 @@ const el = {
   campoDestinatario: $('campo-destinatario'),
   etiquetaRemitente: $('etiqueta-remitente'),
   plataformas: $('plataformas'),
+  fondos: $('fondos'),
   generar: $('generar'),
   errorGeneral: $('error-general'),
   escala: $('tarjeta-escala'),
@@ -119,6 +120,32 @@ function ajustarEscala() {
   const escala = Math.min(1, disponible / TAMANO_TARJETA);
   el.escala.style.setProperty('--escala-tarjeta', escala);
   el.escala.style.height = `${TAMANO_TARJETA * escala}px`;
+}
+
+/* ---------- Fondo de la tarjeta ---------- */
+
+function renderizarFondos() {
+  el.fondos.innerHTML = DONACION.fondos
+    .map((fondo, i) => {
+      let estilo = `--fondo-color: ${escaparHTML(fondo.color)}`;
+      if (fondo.imagen) estilo += `; background-image: url('${escaparHTML(fondo.imagen)}')`;
+      return `
+        <label class="fondo">
+          <input type="radio" name="fondo" value="${escaparHTML(fondo.id)}"${i === 0 ? ' checked' : ''}>
+          <span class="fondo__muestra">
+            <span class="fondo__color" style="${estilo}"></span>
+            ${escaparHTML(fondo.nombre)}
+          </span>
+        </label>`;
+    })
+    .join('');
+}
+
+function aplicarFondo(id) {
+  const fondo = DONACION.fondos.find((f) => f.id === id) ?? DONACION.fondos[0];
+  if (!fondo) return;
+  el.tarjeta.style.backgroundColor = fondo.color ?? '#ffffff';
+  el.tarjeta.style.backgroundImage = fondo.imagen ? `url("${fondo.imagen}")` : 'none';
 }
 
 /* ---------- Validación ---------- */
@@ -320,6 +347,7 @@ async function cargarPomkemons() {
 function registrarEventos() {
   el.formulario.addEventListener('change', (evento) => {
     if (evento.target.name === 'modalidad') actualizarModalidad();
+    if (evento.target.name === 'fondo') aplicarFondo(evento.target.value);
   });
   el.pomkemon.addEventListener('change', () => seleccionarPomkemon(el.pomkemon.value));
 
@@ -354,6 +382,8 @@ function registrarEventos() {
 async function iniciar() {
   el.gracias.textContent = TEXTOS.agradecimientoDonativo;
   renderizarPlataformas();
+  renderizarFondos();
+  aplicarFondo(DONACION.fondos[0]?.id);
   registrarEventos();
   actualizarModalidad();
   ajustarEscala();

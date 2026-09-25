@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/pages/cafe.css">
+  <script type="module" src="js/core/layout.js" blocking="render"></script>
 </head>
 <body data-pagina="cafe">
   <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
@@ -88,6 +89,11 @@
               </div>
               <textarea class="campo__control campo__control--area" id="mensaje" name="mensaje" maxlength="140" rows="3"></textarea>
             </div>
+
+            <fieldset class="campo selector-fondo">
+              <legend class="campo__etiqueta">Fondo de la tarjeta</legend>
+              <div class="selector-fondo__opciones" id="fondos"></div>
+            </fieldset>
           </fieldset>
 
           <!-- Paso 3: donativo -->
@@ -145,7 +151,6 @@
 
   <script src="vendor/html2canvas.min.js" defer></script>
   <script src="vendor/canvas-confetti.js" defer></script>
-  <script type="module" src="js/core/layout.js"></script>
   <script type="module" src="js/cafe.js"></script>
 </body>
 </html>

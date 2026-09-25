@@ -12,6 +12,7 @@ import { escaparHTML, rutaPomkemon } from '../core/utils.js';
 import { esFavorito, alternarFavorito } from '../core/favoritos.js';
 import { reproducir } from '../core/audio.js';
 import { crearListaBadges } from './type-badges.js';
+import './efecto-holo.js';
 
 const ICONO_CORAZON = `
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -22,11 +23,21 @@ export function enlacePomkemon(numero) {
   return `pomkemon.html?id=${encodeURIComponent(numero)}`;
 }
 
-/** Figura con el fanart escalado según "tamano" (reutilizada en la ficha). */
-export function crearMarcoImagen(pomkemon, { perezosa = true, clase = '' } = {}) {
+/** Nombre de la transición animada entre páginas (único por Pomkémon). */
+export function nombreTransicion(numero) {
+  return `pomkemon-${String(numero).replace(/[^\w-]/g, '')}`;
+}
+
+/**
+ * Figura con el fanart escalado según "tamano" (reutilizada en la ficha).
+ * opciones.transicion: la imagen "vuela" hasta la ficha al navegar. Solo debe
+ * activarse una vez por Pomkémon en cada página (el nombre ha de ser único).
+ */
+export function crearMarcoImagen(pomkemon, { perezosa = true, clase = '', transicion = false } = {}) {
   const escala = ESCALAS[pomkemon.tamano] ?? 1;
+  const nombre = transicion ? `; view-transition-name: ${nombreTransicion(pomkemon.numero)}` : '';
   return `
-    <div class="marco-imagen ${clase}" style="--escala: ${escala}">
+    <div class="marco-imagen ${clase}" style="--escala: ${escala}${nombre}">
       <img src="${rutaPomkemon(pomkemon)}" alt="Fanart de ${escaparHTML(pomkemon.nombre)}"
            width="1080" height="1080" ${perezosa ? 'loading="lazy"' : ''} decoding="async">
     </div>`;
@@ -58,7 +69,7 @@ export function crearTarjetaPomkemon(pomkemon, { favorito = true } = {}) {
         </a>
       </h3>
       <div class="tarjeta-pomkemon__imagen">
-        ${crearMarcoImagen(pomkemon)}
+        ${crearMarcoImagen(pomkemon, { transicion: true })}
         ${favorito ? crearBotonFavorito(pomkemon.numero, pomkemon.nombre) : ''}
       </div>
       ${crearListaBadges(pomkemon.tipos)}

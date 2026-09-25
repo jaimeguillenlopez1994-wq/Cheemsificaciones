@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/pages/novedades.css">
+  <script type="module" src="js/core/layout.js" blocking="render"></script>
 </head>
 <body data-pagina="novedades">
   <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
@@ -24,7 +25,31 @@
       </div>
 
       <ol class="lista-novedades" id="lista-novedades" role="list">
-        <li class="estado estado--cargando">Cargando novedades...</li>
+        <li class="visualmente-oculto" role="status">Cargando novedades...</li>
+        <li class="fila-novedad tarjeta-esqueleto" aria-hidden="true">
+          <span class="fila-novedad__imagen esqueleto"></span>
+          <span class="fila-novedad__contenido">
+            <span class="esqueleto esqueleto--linea esqueleto--corta"></span>
+            <span class="esqueleto esqueleto--linea"></span>
+            <span class="esqueleto esqueleto--linea esqueleto--corta"></span>
+          </span>
+        </li>
+        <li class="fila-novedad tarjeta-esqueleto" aria-hidden="true">
+          <span class="fila-novedad__imagen esqueleto"></span>
+          <span class="fila-novedad__contenido">
+            <span class="esqueleto esqueleto--linea esqueleto--corta"></span>
+            <span class="esqueleto esqueleto--linea"></span>
+            <span class="esqueleto esqueleto--linea esqueleto--corta"></span>
+          </span>
+        </li>
+        <li class="fila-novedad tarjeta-esqueleto" aria-hidden="true">
+          <span class="fila-novedad__imagen esqueleto"></span>
+          <span class="fila-novedad__contenido">
+            <span class="esqueleto esqueleto--linea esqueleto--corta"></span>
+            <span class="esqueleto esqueleto--linea"></span>
+            <span class="esqueleto esqueleto--linea esqueleto--corta"></span>
+          </span>
+        </li>
       </ol>
 
       <div class="ver-mas">
@@ -35,7 +60,6 @@
     <footer id="pie"></footer>
   </div>
 
-  <script type="module" src="js/core/layout.js"></script>
   <script type="module" src="js/novedades.js"></script>
 </body>
 </html>

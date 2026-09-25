@@ -139,3 +139,8 @@
     top: 38%;
   }
 }
+
+/* Esqueleto del banner mientras cargan las novedades */
+.banner-novedad.esqueleto::after {
+  display: none;
+}

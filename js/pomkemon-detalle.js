@@ -12,8 +12,8 @@ import {
   obtenerApariciones,
 } from './core/data.js';
 import { obtenerParametro, escaparHTML, normalizarNumero, rutaPomkemon, mostrarEstado } from './core/utils.js';
-import { crearListaBadges } from './components/type-badges.js';
-import { crearMarcoImagen, crearBotonFavorito, activarFavoritos, enlacePomkemon } from './components/pomkemon-card.js';
+import { crearListaBadges, datosTipo } from './components/type-badges.js';
+import { crearMarcoImagen, crearBotonFavorito, activarFavoritos, enlacePomkemon, nombreTransicion } from './components/pomkemon-card.js';
 import { crearCarrusel, activarCarrusel } from './components/carousel.js';
 
 const el = {
@@ -62,7 +62,7 @@ function plantillaEvoluciones(pomkemon, cadena) {
     .map((p) => {
       const actual = p.numero === pomkemon.numero;
       const contenido = `
-        ${crearMarcoImagen(p, { clase: 'evolucion__imagen' })}
+        ${crearMarcoImagen(p, { clase: 'evolucion__imagen', transicion: !actual })}
         <span class="evolucion__numero">#${escaparHTML(p.numero)}</span>
         <span class="evolucion__nombre">${escaparHTML(p.nombre)}</span>`;
       return actual
@@ -88,9 +88,11 @@ function plantillaAparicion(aparicion) {
 function plantillaFicha(pomkemon, habilidad) {
   const numero = escaparHTML(pomkemon.numero);
   const nombre = escaparHTML(pomkemon.nombre);
+  // El borde de la ficha se tiñe con el color del tipo principal
+  const colorTipo = pomkemon.tipos[0] ? datosTipo(pomkemon.tipos[0]).color : '';
 
   return `
-    <article class="ficha" aria-labelledby="ficha-titulo">
+    <article class="ficha" aria-labelledby="ficha-titulo"${colorTipo ? ` style="--color-tipo: ${colorTipo}"` : ''}>
       <header class="ficha__encabezado">
         <h1 class="ficha__titulo" id="ficha-titulo">
           <span class="ficha__numero">#${numero}</span> ${nombre}
@@ -100,7 +102,7 @@ function plantillaFicha(pomkemon, habilidad) {
 
       <div class="ficha__cuerpo">
         <div class="ficha__imagen">
-          ${crearMarcoImagen(pomkemon, { perezosa: false })}
+          ${crearMarcoImagen(pomkemon, { perezosa: false, transicion: true })}
           ${crearBotonFavorito(pomkemon.numero, pomkemon.nombre)}
         </div>
 
@@ -177,9 +179,37 @@ function mostrarNoEncontrado(id) {
     </div>`;
 }
 
+/**
+ * Esqueleto que se dibuja al instante, antes de leer el JSON: así la página
+ * nunca aparece vacía y la imagen de la tarjeta tiene a dónde "volar"
+ * durante la transición animada entre páginas.
+ */
+function mostrarEsqueleto(id) {
+  const nombre = id ? `view-transition-name: ${nombreTransicion(normalizarNumero(id))}` : '';
+  el.ficha.innerHTML = `
+    <div class="ficha ficha--esqueleto" aria-hidden="true">
+      <div class="ficha__encabezado">
+        <span class="esqueleto esqueleto--linea esqueleto--titulo"></span>
+        <span class="esqueleto esqueleto--pildora"></span>
+      </div>
+      <div class="ficha__cuerpo">
+        <div class="ficha__imagen">
+          <div class="marco-imagen esqueleto" style="${nombre}"></div>
+        </div>
+        <div class="ficha__info">
+          <span class="esqueleto esqueleto--linea esqueleto--subtitulo"></span>
+          <span class="esqueleto esqueleto--linea"></span>
+          <span class="esqueleto esqueleto--linea esqueleto--corta"></span>
+        </div>
+      </div>
+    </div>
+    <p class="visualmente-oculto" role="status">Cargando Pomkémon...</p>`;
+}
+
 async function iniciar() {
   ajustarEnlaceVolver();
   const id = obtenerParametro('id');
+  mostrarEsqueleto(id);
 
   try {
     const pomkemon = id ? await obtenerPomkemon(id) : null;

@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/pages/recursos.css">
+  <script type="module" src="js/core/layout.js" blocking="render"></script>
 </head>
 <body data-pagina="recursos">
   <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
@@ -24,7 +25,49 @@
       </div>
 
       <div class="grilla" id="grilla-recursos">
-        <p class="estado estado--cargando">Cargando recursos...</p>
+        <p class="visualmente-oculto" role="status">Cargando recursos...</p>
+        <div class="tarjeta-recurso tarjeta-esqueleto" aria-hidden="true">
+          <span class="tarjeta-recurso__imagen esqueleto"></span>
+          <span class="tarjeta-recurso__cuerpo">
+            <span class="esqueleto esqueleto--linea"></span>
+            <span class="esqueleto esqueleto--linea esqueleto--corta"></span>
+          </span>
+        </div>
+        <div class="tarjeta-recurso tarjeta-esqueleto" aria-hidden="true">
+          <span class="tarjeta-recurso__imagen esqueleto"></span>
+          <span class="tarjeta-recurso__cuerpo">
+            <span class="esqueleto esqueleto--linea"></span>
+            <span class="esqueleto esqueleto--linea esqueleto--corta"></span>
+          </span>
+        </div>
+        <div class="tarjeta-recurso tarjeta-esqueleto" aria-hidden="true">
+          <span class="tarjeta-recurso__imagen esqueleto"></span>
+          <span class="tarjeta-recurso__cuerpo">
+            <span class="esqueleto esqueleto--linea"></span>
+            <span class="esqueleto esqueleto--linea esqueleto--corta"></span>
+          </span>
+        </div>
+        <div class="tarjeta-recurso tarjeta-esqueleto" aria-hidden="true">
+          <span class="tarjeta-recurso__imagen esqueleto"></span>
+          <span class="tarjeta-recurso__cuerpo">
+            <span class="esqueleto esqueleto--linea"></span>
+            <span class="esqueleto esqueleto--linea esqueleto--corta"></span>
+          </span>
+        </div>
+        <div class="tarjeta-recurso tarjeta-esqueleto" aria-hidden="true">
+          <span class="tarjeta-recurso__imagen esqueleto"></span>
+          <span class="tarjeta-recurso__cuerpo">
+            <span class="esqueleto esqueleto--linea"></span>
+            <span class="esqueleto esqueleto--linea esqueleto--corta"></span>
+          </span>
+        </div>
+        <div class="tarjeta-recurso tarjeta-esqueleto" aria-hidden="true">
+          <span class="tarjeta-recurso__imagen esqueleto"></span>
+          <span class="tarjeta-recurso__cuerpo">
+            <span class="esqueleto esqueleto--linea"></span>
+            <span class="esqueleto esqueleto--linea esqueleto--corta"></span>
+          </span>
+        </div>
       </div>
 
       <div class="ver-mas">
@@ -35,7 +78,6 @@
     <footer id="pie"></footer>
   </div>
 
-  <script type="module" src="js/core/layout.js"></script>
   <script type="module" src="js/recursos.js"></script>
 </body>
 </html>

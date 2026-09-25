@@ -52,7 +52,7 @@
 .ficha {
   padding: clamp(1.25rem, 4vw, 3rem);
   background: var(--blanco);
-  border: 1px solid var(--borde);
+  border: 3px solid var(--color-tipo, var(--borde));
   border-radius: var(--radio-grande);
   box-shadow: var(--sombra);
 }
