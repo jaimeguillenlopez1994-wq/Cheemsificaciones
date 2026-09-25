@@ -275,6 +275,38 @@ function descripcionDe(html) {
   return /<meta name="description" content="([^"]*)">/.exec(html)?.[1] ?? '';
 }
 
+/* ---------- Service worker (sitio instalable / sin conexión) ---------- */
+
+/** Archivos de las carpetas indicadas (recursivo), como rutas relativas del sitio. */
+async function listar(carpeta, filtro) {
+  const base = path.join(SALIDA, carpeta);
+  if (!(await existe(base))) return [];
+  const entradas = await readdir(base, { recursive: true, withFileTypes: true });
+  return entradas
+    .filter((e) => e.isFile() && filtro(e.name))
+    .map((e) => path.relative(SALIDA, path.join(e.parentPath ?? e.path, e.name)).split(path.sep).join('/'));
+}
+
+async function prepararServiceWorker() {
+  const precarga = [
+    ...PAGINAS_BASE,
+    'manifest.webmanifest',
+    ...(await listar('css', (n) => n.endsWith('.css'))),
+    ...(await listar('js', (n) => n.endsWith('.js'))),
+    ...(await listar('data', (n) => n.endsWith('.json'))),
+    ...(await listar('assets/fonts', (n) => n.endsWith('.woff2'))),
+    ...(await listar('assets/img/ui', (n) => /\.(svg|png)$/.test(n) && !n.startsWith('icono-maskable'))),
+  ];
+  const ruta = path.join(SALIDA, 'sw.js');
+  const original = await readFile(ruta, 'utf8');
+  const actualizado = original
+    .replace("const VERSION = 'desarrollo';", `const VERSION = '${version}';`)
+    .replace('const PRECARGA = [];', `const PRECARGA = ${JSON.stringify(precarga)};`);
+  if (actualizado === original) throw new Error('No se pudo preparar sw.js (¿cambió su formato?).');
+  await writeFile(ruta, actualizado);
+  return precarga.length;
+}
+
 /* ---------- 6. Sitemap ---------- */
 
 async function escribirSitemap(paginas) {
@@ -371,10 +403,12 @@ async function principal() {
   }
 
   await escribirSitemap(paginas);
+  const precargados = await prepararServiceWorker();
 
   console.log(`  ✔ ${miniaturas} miniatura(s) en min/`);
   console.log(`  ✔ ${paginas.length - PAGINAS_BASE.length} página(s) fijas con vista previa para redes`);
   console.log(`  ✔ sitemap.xml con ${paginas.length} direcciones y robots.txt`);
+  console.log(`  ✔ service worker ${version} con ${precargados} archivo(s) para usar sin conexión`);
   console.log(`\nListo en ${((Date.now() - inicio) / 1000).toFixed(1)} s. Pruébalo con: npm run servir:sitio\n`);
 }
 

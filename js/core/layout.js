@@ -8,7 +8,7 @@
  *
  * Se ejecuta solo al importarse; cada HTML solo necesita cargar este módulo.
  */
-import { SITIO, NAV, REDES, TEXTOS } from './config.js';
+import { SITIO, NAV, REDES, TEXTOS, COMPILADO } from './config.js';
 import { estaSilenciado, alternarSilencio } from './audio.js';
 import { activarImagenesRespaldo } from './utils.js';
 import './easter-egg.js';
@@ -174,3 +174,11 @@ function iniciarLayout() {
 }
 
 iniciarLayout();
+
+/* Sitio instalable y disponible sin conexión: solo en la versión publicada,
+   para que en local nunca se sirvan archivos viejos mientras se edita. */
+if (COMPILADO.activo && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch((error) => console.warn('[sw] No se pudo registrar:', error));
+  });
+}
