@@ -5,7 +5,7 @@
  */
 import { SITIO } from './core/config.js';
 import { obtenerNovedad, obtenerPomkemon } from './core/data.js';
-import { obtenerParametro, escaparHTML, formatearFecha, rutaImagen, mostrarEstado } from './core/utils.js';
+import { obtenerIdPagina, escaparHTML, formatearFecha, rutaImagen, mostrarEstado } from './core/utils.js';
 import { crearMiniPomkemon } from './components/pomkemon-card.js';
 
 const contenedor = document.getElementById('post');
@@ -79,7 +79,7 @@ function mostrarNoEncontrada() {
 }
 
 async function iniciar() {
-  const id = obtenerParametro('id');
+  const id = obtenerIdPagina();
   try {
     const novedad = id ? await obtenerNovedad(id) : null;
     if (!novedad) {

@@ -11,7 +11,17 @@ export const SITIO = {
   // Cuando exista el logo definitivo: 'assets/img/ui/logo.webp'.
   // Mientras sea null se muestra el logo de texto provisional.
   logo: null,
+  // Dirección pública del sitio (con / final). Se usa para las vistas previas
+  // al compartir en redes y el sitemap. Cámbiala si usas un dominio propio.
+  url: 'https://jaimeguillenlopez1994-wq.github.io/Cheemsificaciones/',
 };
+
+/**
+ * Modo publicado. NO editar a mano: `npm run construir` (y GitHub Actions)
+ * lo cambian en la copia publicada, que incluye miniaturas y páginas fijas
+ * por Pomkémon, novedad, recurso y meme. En local todo funciona sin ellas.
+ */
+export const COMPILADO = { activo: false, version: 'desarrollo' };
 
 /* ---------- Rutas ---------- */
 export const RUTAS = {

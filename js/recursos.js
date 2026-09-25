@@ -4,7 +4,7 @@
  */
 import { PAGINACION } from './core/config.js';
 import { obtenerRecursos } from './core/data.js';
-import { escaparHTML, rutaImagen, mostrarEstado } from './core/utils.js';
+import { escaparHTML, rutaImagen, rutaMiniatura, mostrarEstado, enlace } from './core/utils.js';
 import { Paginador } from './components/paginator.js';
 
 const grilla = document.getElementById('grilla-recursos');
@@ -20,9 +20,9 @@ function plantillaRecurso(recurso) {
   const formatos = resumenFormatos(recurso.archivos);
 
   return `
-    <a class="tarjeta-recurso" href="recurso.html?id=${encodeURIComponent(recurso.id)}">
+    <a class="tarjeta-recurso" href="${enlace('recurso', recurso.id)}">
       <span class="tarjeta-recurso__imagen">
-        <img src="${escaparHTML(rutaImagen(recurso.imagenPortada))}" alt="" loading="lazy" decoding="async">
+        <img src="${escaparHTML(rutaMiniatura(rutaImagen(recurso.imagenPortada)))}" alt="" loading="lazy" decoding="async">
         ${recurso.categoria ? `<span class="badge-categoria">${escaparHTML(recurso.categoria)}</span>` : ''}
       </span>
       <span class="tarjeta-recurso__cuerpo">

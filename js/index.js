@@ -4,7 +4,7 @@
  */
 import { INICIO } from './core/config.js';
 import { obtenerNovedades, obtenerPomkemons } from './core/data.js';
-import { escaparHTML, formatearFecha, rutaImagen, elegirAlAzar, mostrarEstado } from './core/utils.js';
+import { escaparHTML, formatearFecha, rutaImagen, elegirAlAzar, mostrarEstado, enlace } from './core/utils.js';
 import { crearCarrusel, activarCarrusel } from './components/carousel.js';
 import { crearTarjetaPomkemon, activarFavoritos } from './components/pomkemon-card.js';
 
@@ -18,7 +18,7 @@ const el = {
 
 function plantillaBanner(novedad) {
   return `
-    <a class="banner-novedad" href="post.html?id=${encodeURIComponent(novedad.id)}">
+    <a class="banner-novedad" href="${enlace('novedad', novedad.id)}">
       <img class="banner-novedad__imagen" src="${escaparHTML(rutaImagen(novedad.imagenPortada))}" alt="" decoding="async">
       <span class="banner-novedad__contenido">
         <time class="banner-novedad__fecha" datetime="${escaparHTML(novedad.fecha)}">${formatearFecha(novedad.fecha)}</time>

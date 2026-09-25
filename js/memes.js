@@ -1,11 +1,12 @@
 /**
  * Memes: grilla de 3 columnas con paginación de 12 en 12 y visor a pantalla completa.
- * memes.html?id=meme-XXX abre directamente ese meme en el visor
+ * memes.html?id=meme-XXX (o su página fija meme-XXX.html al publicar) abre
+ * directamente ese meme en el visor
  * (así funcionan los enlaces de "Imágenes donde aparece").
  */
 import { PAGINACION } from './core/config.js';
 import { obtenerMemes } from './core/data.js';
-import { escaparHTML, rutaMeme, obtenerParametro, mostrarEstado } from './core/utils.js';
+import { escaparHTML, rutaMeme, rutaMiniatura, obtenerIdPagina, mostrarEstado, enlace } from './core/utils.js';
 import { Paginador } from './components/paginator.js';
 import { crearVisor } from './components/lightbox.js';
 
@@ -24,9 +25,9 @@ function plantillaMeme(meme) {
     : '';
 
   return `
-    <a class="tarjeta-meme" href="memes.html?id=${encodeURIComponent(meme.id)}" data-meme="${escaparHTML(meme.id)}">
+    <a class="tarjeta-meme" href="${enlace('meme', meme.id)}" data-meme="${escaparHTML(meme.id)}">
       <span class="tarjeta-meme__imagen">
-        <img src="${escaparHTML(rutaMeme(meme.imagenes[0]))}" alt="" loading="lazy" decoding="async">
+        <img src="${escaparHTML(rutaMiniatura(rutaMeme(meme.imagenes[0])))}" alt="" loading="lazy" decoding="async">
         ${indicador}
       </span>
       <span class="tarjeta-meme__titulo">${escaparHTML(meme.titulo)}</span>
@@ -36,7 +37,7 @@ function plantillaMeme(meme) {
 /* ---------- Visor + URL compartible ---------- */
 
 function actualizarURL(id) {
-  history.replaceState(null, '', id ? `?id=${encodeURIComponent(id)}` : location.pathname);
+  history.replaceState(null, '', id ? enlace('meme', id) : 'memes.html');
 }
 
 function abrirMeme(id) {
@@ -74,7 +75,7 @@ async function iniciar() {
     memesPorId = new Map(memes.map((m) => [m.id, m]));
     paginador.establecer(memes);
 
-    const idInicial = obtenerParametro('id');
+    const idInicial = obtenerIdPagina();
     if (idInicial && !abrirMeme(idInicial)) actualizarURL(null);
   } catch (error) {
     console.error(error);

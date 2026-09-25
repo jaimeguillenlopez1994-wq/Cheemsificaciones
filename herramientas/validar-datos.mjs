@@ -79,6 +79,18 @@ function fechaValida(texto) {
   return fecha.getUTCFullYear() === a && fecha.getUTCMonth() === m - 1 && fecha.getUTCDate() === d;
 }
 
+/**
+ * Los ids dan nombre a las páginas fijas que se generan al publicar
+ * (post-001.html, rec-001.html, meme-001.html): prefijo obligatorio y solo
+ * minúsculas, números y guiones, para que nunca pisen otra página del sitio.
+ */
+function revisarId(archivo, quien, id, prefijo) {
+  if (!esTexto(id)) return;
+  if (!new RegExp(`^${prefijo}-[a-z0-9-]+$`).test(id)) {
+    error(archivo, `${quien}: el id debe empezar por "${prefijo}-" y usar solo minúsculas, números y guiones (p. ej. "${prefijo}-001").`);
+  }
+}
+
 function revisarDuplicados(archivo, lista, campo, nombre) {
   const vistos = new Set();
   for (const item of lista) {
@@ -187,6 +199,7 @@ async function validarMemes({ archivo, datos }, numeros) {
   for (const [i, m] of datos.entries()) {
     const quien = `Meme ${etiqueta(m, i)}`;
     if (!esTexto(m?.id)) error(archivo, `${quien}: falta "id".`);
+    revisarId(archivo, quien, m?.id, 'meme');
     if (!esTexto(m?.titulo)) error(archivo, `${quien}: falta "titulo".`);
     if (!Array.isArray(m?.imagenes) || m.imagenes.length === 0) error(archivo, `${quien}: "imagenes" debe tener al menos una imagen.`);
     else for (const img of m.imagenes) await revisarImagen(archivo, quien, RUTAS.memes + img);
@@ -206,6 +219,7 @@ async function validarNovedades({ archivo, datos }, numeros) {
   for (const [i, n] of datos.entries()) {
     const quien = `Novedad ${etiqueta(n, i)}`;
     if (!esTexto(n?.id)) error(archivo, `${quien}: falta "id".`);
+    revisarId(archivo, quien, n?.id, 'post');
     if (!esTexto(n?.titulo)) error(archivo, `${quien}: falta "titulo".`);
     if (!fechaValida(n?.fecha)) error(archivo, `${quien}: "fecha" debe ser una fecha real con formato AAAA-MM-DD (tiene "${n?.fecha}").`);
     if (!esTexto(n?.resumen)) aviso(archivo, `${quien}: falta "resumen" (se usa en la lista y en el carrusel).`);
@@ -235,6 +249,7 @@ async function validarRecursos({ archivo, datos }, numeros) {
   for (const [i, r] of datos.entries()) {
     const quien = `Recurso ${etiqueta(r, i)}`;
     if (!esTexto(r?.id)) error(archivo, `${quien}: falta "id".`);
+    revisarId(archivo, quien, r?.id, 'rec');
     if (!esTexto(r?.titulo)) error(archivo, `${quien}: falta "titulo".`);
     if (!esTexto(r?.categoria)) aviso(archivo, `${quien}: falta "categoria".`);
     await revisarImagen(archivo, quien, r?.imagenPortada && RUTAS.img + r.imagenPortada);

@@ -1,5 +1,5 @@
 /**
- * Ficha individual: pomkemon.html?id=XXXX
+ * Ficha individual: pomkemon.html?id=XXXX (o su página fija pomkemon-XXXX.html al publicar)
  * Encabezado, fanart, descripción, habilidad, navegación anterior/siguiente,
  * línea evolutiva y carrusel "Imágenes donde aparece".
  */
@@ -11,7 +11,7 @@ import {
   obtenerHabilidad,
   obtenerApariciones,
 } from './core/data.js';
-import { obtenerParametro, escaparHTML, normalizarNumero, rutaPomkemon, mostrarEstado } from './core/utils.js';
+import { obtenerIdPagina, escaparHTML, normalizarNumero, rutaPomkemon, mostrarEstado } from './core/utils.js';
 import { crearListaBadges, datosTipo } from './components/type-badges.js';
 import { crearMarcoImagen, crearBotonFavorito, activarFavoritos, enlacePomkemon, nombreTransicion } from './components/pomkemon-card.js';
 import { crearCarrusel, activarCarrusel } from './components/carousel.js';
@@ -62,7 +62,7 @@ function plantillaEvoluciones(pomkemon, cadena) {
     .map((p) => {
       const actual = p.numero === pomkemon.numero;
       const contenido = `
-        ${crearMarcoImagen(p, { clase: 'evolucion__imagen', transicion: !actual })}
+        ${crearMarcoImagen(p, { clase: 'evolucion__imagen', transicion: !actual, imagen: 'miniatura' })}
         <span class="evolucion__numero">#${escaparHTML(p.numero)}</span>
         <span class="evolucion__nombre">${escaparHTML(p.nombre)}</span>`;
       return actual
@@ -214,7 +214,7 @@ function mostrarEsqueleto(id) {
 
 async function iniciar() {
   ajustarEnlaceVolver();
-  const id = obtenerParametro('id');
+  const id = obtenerIdPagina();
   mostrarEsqueleto(id);
 
   try {

@@ -2,13 +2,42 @@
  * Utilidades compartidas: parámetros de URL, seguridad de texto,
  * fechas, búsqueda, azar, rutas de imágenes y estados de la interfaz.
  */
-import { RUTAS } from './config.js';
+import { RUTAS, COMPILADO } from './config.js';
 
-/* ---------- URL ---------- */
+/* ---------- URL y enlaces ---------- */
 
 /** Devuelve el valor de ?nombre= en la URL actual, o null. */
 export function obtenerParametro(nombre) {
   return new URLSearchParams(location.search).get(nombre);
+}
+
+/**
+ * Identificador del contenido de la página: ?id=... o, en las páginas fijas
+ * generadas al publicar (p. ej. pomkemon-0001.html), <body data-id="0001">.
+ */
+export function obtenerIdPagina() {
+  return obtenerParametro('id') ?? document.body.dataset.id ?? null;
+}
+
+const PAGINAS = {
+  pomkemon: { plantilla: 'pomkemon.html', fija: (id) => `pomkemon-${id}.html` },
+  novedad: { plantilla: 'post.html', fija: (id) => `${id}.html` },
+  recurso: { plantilla: 'recurso.html', fija: (id) => `${id}.html` },
+  meme: { plantilla: 'memes.html', fija: (id) => `${id}.html` },
+};
+
+/** Ids seguros para usarse como nombre de archivo (el validador exige este formato). */
+const ID_SEGURO = /^[a-z0-9-]+$/;
+
+/**
+ * Enlace a un Pomkémon, novedad, recurso o meme.
+ * En el sitio publicado apunta a su página fija (con vista previa para redes);
+ * en local, a la plantilla con ?id=.
+ */
+export function enlace(tipo, id) {
+  const pagina = PAGINAS[tipo];
+  if (COMPILADO.activo && ID_SEGURO.test(id)) return pagina.fija(id);
+  return `${pagina.plantilla}?id=${encodeURIComponent(id)}`;
 }
 
 /* ---------- Texto ---------- */
@@ -85,6 +114,16 @@ export function rutaPomkemon(pomkemon) {
 
 export function rutaMeme(archivo) {
   return archivo ? RUTAS.memes + archivo : RUTAS.placeholder;
+}
+
+/**
+ * Versión reducida (≈600 px) de una imagen, generada al publicar en una
+ * subcarpeta min/. En local devuelve la original.
+ */
+export function rutaMiniatura(ruta) {
+  if (!COMPILADO.activo || !ruta || ruta === RUTAS.placeholder || /\.(svg|gif)$/i.test(ruta)) return ruta;
+  const corte = ruta.lastIndexOf('/') + 1;
+  return `${ruta.slice(0, corte)}min/${ruta.slice(corte)}`;
 }
 
 /**

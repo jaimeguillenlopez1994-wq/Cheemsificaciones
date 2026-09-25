@@ -5,7 +5,7 @@
  */
 import { SITIO } from './core/config.js';
 import { obtenerRecurso, obtenerPomkemon } from './core/data.js';
-import { obtenerParametro, escaparHTML, rutaImagen, mostrarEstado } from './core/utils.js';
+import { obtenerIdPagina, escaparHTML, rutaImagen, mostrarEstado } from './core/utils.js';
 import { crearMiniPomkemon } from './components/pomkemon-card.js';
 import { crearVisor } from './components/lightbox.js';
 
@@ -121,7 +121,7 @@ function mostrarNoEncontrado() {
 }
 
 async function iniciar() {
-  const id = obtenerParametro('id');
+  const id = obtenerIdPagina();
   try {
     const recurso = id ? await obtenerRecurso(id) : null;
     if (!recurso) {

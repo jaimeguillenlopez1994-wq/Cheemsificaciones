@@ -4,11 +4,11 @@
  *   contenedor.innerHTML = lista.map((p) => crearTarjetaPomkemon(p)).join('');
  *   activarFavoritos(contenedor);
  *
- * Toda la tarjeta enlaza a pomkemon.html?id=XXXX; el botón de favorito
+ * Toda la tarjeta enlaza a la ficha del Pomkémon; el botón de favorito
  * queda por encima del enlace y no navega.
  */
 import { ESCALAS } from '../core/config.js';
-import { escaparHTML, rutaPomkemon } from '../core/utils.js';
+import { escaparHTML, rutaPomkemon, rutaMiniatura, enlace } from '../core/utils.js';
 import { esFavorito, alternarFavorito } from '../core/favoritos.js';
 import { reproducir } from '../core/audio.js';
 import { crearListaBadges } from './type-badges.js';
@@ -20,8 +20,11 @@ const ICONO_CORAZON = `
   </svg>`;
 
 export function enlacePomkemon(numero) {
-  return `pomkemon.html?id=${encodeURIComponent(numero)}`;
+  return enlace('pomkemon', numero);
 }
+
+/* Ancho con que se muestra cada tarjeta (para que el navegador elija miniatura u original) */
+const TAMANOS_TARJETA = '(max-width: 560px) 90vw, (max-width: 900px) 45vw, 340px';
 
 /** Nombre de la transición animada entre páginas (único por Pomkémon). */
 export function nombreTransicion(numero) {
@@ -32,13 +35,22 @@ export function nombreTransicion(numero) {
  * Figura con el fanart escalado según "tamano" (reutilizada en la ficha).
  * opciones.transicion: la imagen "vuela" hasta la ficha al navegar. Solo debe
  * activarse una vez por Pomkémon en cada página (el nombre ha de ser único).
+ * opciones.imagen: 'completa' (ficha), 'adaptable' (tarjetas: el navegador elige
+ * miniatura u original según el ancho) o 'miniatura' (imágenes pequeñas).
  */
-export function crearMarcoImagen(pomkemon, { perezosa = true, clase = '', transicion = false } = {}) {
+export function crearMarcoImagen(pomkemon, { perezosa = true, clase = '', transicion = false, imagen = 'completa' } = {}) {
   const escala = ESCALAS[pomkemon.tamano] ?? 1;
   const nombre = transicion ? `; view-transition-name: ${nombreTransicion(pomkemon.numero)}` : '';
+  const original = rutaPomkemon(pomkemon);
+  const miniatura = rutaMiniatura(original);
+  let fuente = `src="${original}"`;
+  if (imagen === 'miniatura') fuente = `src="${miniatura}"`;
+  if (imagen === 'adaptable' && miniatura !== original) {
+    fuente = `src="${miniatura}" srcset="${miniatura} 600w, ${original} 1080w" sizes="${TAMANOS_TARJETA}"`;
+  }
   return `
     <div class="marco-imagen ${clase}" style="--escala: ${escala}${nombre}">
-      <img src="${rutaPomkemon(pomkemon)}" alt="Fanart de ${escaparHTML(pomkemon.nombre)}"
+      <img ${fuente} alt="Fanart de ${escaparHTML(pomkemon.nombre)}"
            width="1080" height="1080" ${perezosa ? 'loading="lazy"' : ''} decoding="async">
     </div>`;
 }
@@ -69,7 +81,7 @@ export function crearTarjetaPomkemon(pomkemon, { favorito = true } = {}) {
         </a>
       </h3>
       <div class="tarjeta-pomkemon__imagen">
-        ${crearMarcoImagen(pomkemon, { transicion: true })}
+        ${crearMarcoImagen(pomkemon, { transicion: true, imagen: 'adaptable' })}
         ${favorito ? crearBotonFavorito(pomkemon.numero, pomkemon.nombre) : ''}
       </div>
       ${crearListaBadges(pomkemon.tipos)}
@@ -80,7 +92,7 @@ export function crearTarjetaPomkemon(pomkemon, { favorito = true } = {}) {
 export function crearMiniPomkemon(pomkemon) {
   return `
     <a class="mini-pomkemon" href="${enlacePomkemon(pomkemon.numero)}">
-      ${crearMarcoImagen(pomkemon, { clase: 'mini-pomkemon__imagen' })}
+      ${crearMarcoImagen(pomkemon, { clase: 'mini-pomkemon__imagen', imagen: 'miniatura' })}
       <span class="mini-pomkemon__numero">#${escaparHTML(pomkemon.numero)}</span>
       <span class="mini-pomkemon__nombre">${escaparHTML(pomkemon.nombre)}</span>
     </a>`;

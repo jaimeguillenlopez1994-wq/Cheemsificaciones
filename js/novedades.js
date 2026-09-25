@@ -4,7 +4,7 @@
  */
 import { PAGINACION } from './core/config.js';
 import { obtenerNovedades } from './core/data.js';
-import { escaparHTML, formatearFecha, rutaImagen, mostrarEstado } from './core/utils.js';
+import { escaparHTML, formatearFecha, rutaImagen, rutaMiniatura, mostrarEstado, enlace } from './core/utils.js';
 import { Paginador } from './components/paginator.js';
 
 const lista = document.getElementById('lista-novedades');
@@ -13,9 +13,9 @@ const verMas = document.getElementById('ver-mas');
 function plantillaFilaNovedad(novedad) {
   return `
     <li>
-      <a class="fila-novedad" href="post.html?id=${encodeURIComponent(novedad.id)}">
+      <a class="fila-novedad" href="${enlace('novedad', novedad.id)}">
         <span class="fila-novedad__imagen">
-          <img src="${escaparHTML(rutaImagen(novedad.imagenPortada))}" alt="" loading="lazy" decoding="async">
+          <img src="${escaparHTML(rutaMiniatura(rutaImagen(novedad.imagenPortada)))}" alt="" loading="lazy" decoding="async">
         </span>
         <span class="fila-novedad__contenido">
           <time class="fila-novedad__fecha" datetime="${escaparHTML(novedad.fecha)}">${formatearFecha(novedad.fecha)}</time>

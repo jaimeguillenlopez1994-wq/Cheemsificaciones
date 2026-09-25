@@ -6,7 +6,7 @@
  *   const pomkemon = await obtenerPomkemon('0001');
  */
 import { RUTAS, ARCHIVOS_DATOS } from './config.js';
-import { normalizarNumero, rutaImagen, rutaMeme } from './utils.js';
+import { normalizarNumero, rutaImagen, rutaMeme, rutaMiniatura, enlace } from './utils.js';
 
 const cacheJSON = new Map();
 
@@ -185,8 +185,8 @@ const obtenerIndiceApariciones = memorizar(async () => {
       tipo: 'meme',
       id: m.id,
       titulo: m.titulo,
-      imagen: rutaMeme(m.imagenes[0]),
-      enlace: `memes.html?id=${encodeURIComponent(m.id)}`,
+      imagen: rutaMiniatura(rutaMeme(m.imagenes[0])),
+      enlace: enlace('meme', m.id),
     }),
   );
   novedades.forEach((n) =>
@@ -194,8 +194,8 @@ const obtenerIndiceApariciones = memorizar(async () => {
       tipo: 'novedad',
       id: n.id,
       titulo: n.titulo,
-      imagen: rutaImagen(n.imagenPortada),
-      enlace: `post.html?id=${encodeURIComponent(n.id)}`,
+      imagen: rutaMiniatura(rutaImagen(n.imagenPortada)),
+      enlace: enlace('novedad', n.id),
     }),
   );
   recursos.forEach((r) =>
@@ -203,8 +203,8 @@ const obtenerIndiceApariciones = memorizar(async () => {
       tipo: 'recurso',
       id: r.id,
       titulo: r.titulo,
-      imagen: rutaImagen(r.imagenPortada),
-      enlace: `recurso.html?id=${encodeURIComponent(r.id)}`,
+      imagen: rutaMiniatura(rutaImagen(r.imagenPortada)),
+      enlace: enlace('recurso', r.id),
     }),
   );
 
