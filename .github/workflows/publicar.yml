@@ -1,0 +1,80 @@
+# Valida, prueba y publica el sitio.
+# - En cualquier rama o pull request: valida los datos, construye y ejecuta las pruebas.
+# - En main: además publica _sitio/ en GitHub Pages (solo si todo lo anterior pasó).
+#   Requisito (una sola vez): Settings → Pages → Source: "GitHub Actions".
+name: Validar, probar y publicar
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verificar:
+    name: Validar datos y probar
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar herramientas
+        run: npm ci
+
+      - name: Validar los JSON de data/
+        run: npm run validar
+
+      # Antes de construir: instala Chromium y las fuentes del sistema que usan las imágenes para redes
+      - name: Instalar navegador para las pruebas
+        run: npx playwright install --with-deps chromium
+
+      - name: Construir la versión publicable
+        run: npm run construir
+
+      - name: Pruebas (versión local)
+        run: npm run pruebas
+
+      - name: Pruebas (versión publicable)
+        run: npm run pruebas
+        env:
+          SITIO_PRUEBAS: _sitio
+
+      - name: Guardar el informe si algo falla
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: informe-pruebas
+          path: test-results/
+          retention-days: 7
+
+      - name: Preparar la publicación
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _sitio
+
+  publicar:
+    name: Publicar en GitHub Pages
+    needs: verificar
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - id: despliegue
+        uses: actions/deploy-pages@v4

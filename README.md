@@ -10,15 +10,23 @@ El sitio carga los JSON con `fetch()` y usa módulos de JavaScript, así que **n
 
 - **VS Code:** extensión *Live Server* → clic derecho en `index.html` → *Open with Live Server*.
 - **Python:** `python -m http.server 8000` en la carpeta del proyecto y abrir <http://localhost:8000>.
+- **Node:** `npm run servir` y abrir <http://localhost:8000>.
 
 ## 2. Publicarlo gratis en GitHub Pages
 
-1. Sube el proyecto a un repositorio de GitHub (la raíz del repositorio debe contener `index.html`).
-2. En el repositorio: **Settings → Pages**.
-3. En *Build and deployment* elige **Source: Deploy from a branch**, la rama (por ejemplo `main`) y la carpeta **`/ (root)`**. Guarda.
-4. En uno o dos minutos el sitio estará en `https://<tu-usuario>.github.io/<nombre-del-repo>/`.
+La publicación es automática con GitHub Actions (`.github/workflows/publicar.yml`). **Configuración, una sola vez:**
 
-El archivo `.nojekyll` (vacío) evita que GitHub procese los archivos, y `404.html` se muestra automáticamente cuando una dirección no existe.
+1. En el repositorio: **Settings → Pages**.
+2. En *Build and deployment* elige **Source: GitHub Actions**.
+3. A partir de ahí, cada vez que subas cambios a la rama **`main`**, GitHub:
+   1. **valida** los JSON (si hay un error, no publica y te dice qué línea revisar);
+   2. **construye** la versión optimizada (miniaturas, vistas previas para redes, sitemap);
+   3. **ejecuta las pruebas** automáticas en escritorio y móvil;
+   4. **publica** en `https://<tu-usuario>.github.io/<nombre-del-repo>/` solo si todo pasó.
+
+El progreso se ve en la pestaña **Actions** del repositorio. En cualquier otra rama (o en un pull request) se hacen los pasos 1 a 3 sin publicar, para revisar cambios con calma.
+
+> Si usas un dominio propio, cambia `SITIO.url` en `js/core/config.js` para que las vistas previas en redes apunten a él.
 
 ---
 
@@ -150,7 +158,8 @@ El campo `pomkemons` de memes, novedades y recursos alimenta la sección **"Imá
 ## 6. Estructura
 
 ```
-*.html              páginas del sitio (+ 404.html)
+*.html              páginas del sitio (+ 404.html y sin-conexion.html)
+manifest.webmanifest, sw.js   sitio instalable y sin conexión
 css/base.css        variables de color, reset y tipografía
 css/layout.css      fondo, marcos, header, menú, footer y ventana "Acerca de..."
 css/components.css  piezas reutilizables (tarjetas, badges, botones, carrusel, visor)
@@ -162,9 +171,33 @@ data/               contenido en JSON
 assets/img/         imágenes (ver tabla de la sección 3)
 assets/audio/       efectos de sonido
 vendor/             librerías externas incluidas en el proyecto
+herramientas/       validador, construcción y servidor local (solo desarrollo)
+pruebas/            pruebas automáticas (Playwright)
+.github/workflows/  validación, pruebas y publicación automáticas
 ```
 
-## 7. Notas
+## 7. Herramientas de desarrollo (opcionales)
+
+Todo lo siguiente lo hace GitHub automáticamente al publicar; solo necesitas instalarlo si quieres ejecutarlo en tu equipo. Requiere [Node.js](https://nodejs.org) 20 o superior; la primera vez ejecuta `npm install`.
+
+| Comando | Qué hace |
+|---|---|
+| `npm run validar` | Revisa los JSON: formato, números e ids duplicados, tipos, habilidades, fechas, bloques, referencias entre catálogos y archivos que faltan. |
+| `npm run construir` | Genera la versión publicable en `_sitio/` (ver abajo). |
+| `npm run servir` / `npm run servir:sitio` | Sirve el proyecto o `_sitio/` en <http://localhost:8000>. |
+| `npm run pruebas` | Pruebas automáticas (Playwright) en escritorio y móvil: navegación, Pomkédex, fichas, memes, novedades, recursos, café, diseño adaptable y accesibilidad. La primera vez: `npx playwright install chromium`. Para probar la versión publicable: `SITIO_PRUEBAS=_sitio npm run pruebas`. |
+| `npm run verificar` | Las tres cosas seguidas: validar, construir y probar. |
+
+**Qué añade la versión publicable** (`npm run construir`), sin cambiar nada en local:
+
+- **Miniaturas** de ~600 px en subcarpetas `min/`: las tarjetas descargan la mitad o menos de peso.
+- **Vista previa al compartir en redes:** una página fija por Pomkémon (`pomkemon-0001.html`), novedad (`post-001.html`), recurso (`rec-001.html`) y meme (`meme-001.html`) con su imagen de 1200×630, título y descripción. Los enlaces del sitio publicado apuntan a estas páginas.
+- **`sitemap.xml` y `robots.txt`** para buscadores.
+- **Instalable como app y disponible sin conexión** (`manifest.webmanifest` + `sw.js`): las páginas visitadas siguen funcionando sin internet.
+
+Por eso los `id` de memes, novedades y recursos deben empezar por `meme-`, `post-` y `rec-` y usar solo minúsculas, números y guiones (el validador lo comprueba).
+
+## 8. Notas
 
 - **Donativos:** el sitio no puede verificar pagos hechos en plataformas externas; la tarjeta conmemorativa se genera cuando la persona pulsa "Ya doné, generar mi tarjeta" (sistema de confianza).
 - **Transiciones entre páginas:** al abrir una ficha, la imagen de la tarjeta "vuela" hasta su lugar (View Transitions; en navegadores sin soporte la navegación es normal).
@@ -172,7 +205,7 @@ vendor/             librerías externas incluidas en el proyecto
 - **Favoritos y silencio** se guardan en el navegador de cada visitante (`localStorage`).
 - **Accesibilidad:** navegable con teclado, textos alternativos, contraste AA en colores y badges, y respeta la preferencia de "reducir movimiento" del sistema.
 
-## 8. Librerías y licencias
+## 9. Librerías y licencias
 
 - Tipografía [Fredoka](https://github.com/hafontia/Fredoka-One) — SIL Open Font License (`assets/fonts/LICENSE-fredoka.txt`).
 - [html2canvas](https://html2canvas.hertzen.com) 1.4.1 — MIT (`vendor/LICENSE-html2canvas.txt`).
