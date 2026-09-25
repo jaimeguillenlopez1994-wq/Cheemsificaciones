@@ -1,0 +1,4 @@
+node_modules/
+_sitio/
+test-results/
+playwright-report/

@@ -1,0 +1,22 @@
+{
+  "name": "cheemsificaciones-pomkemon",
+  "private": true,
+  "description": "Sitio de fanarts Cheemsificaciones Pomkémon. Las dependencias son solo herramientas de desarrollo: el sitio publicado es HTML, CSS y JS sin compilación.",
+  "type": "module",
+  "scripts": {
+    "servir": "node herramientas/servidor.mjs .",
+    "validar": "node herramientas/validar-datos.mjs",
+    "construir": "node herramientas/construir.mjs",
+    "servir:sitio": "node herramientas/servidor.mjs _sitio",
+    "pruebas": "playwright test",
+    "verificar": "npm run validar && npm run construir && npm run pruebas"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "@playwright/test": "^1.55.0",
+    "sharp": "^0.35.4"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
